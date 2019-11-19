@@ -6,3 +6,17 @@ void setup() {
 void draw() {
 
 }
+
+
+//alle
+//maal
+
+
+
+
+
+
+//text
+
+
+//toevoeg
