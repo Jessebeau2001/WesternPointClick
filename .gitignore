@@ -1,2 +1,5 @@
 #ignore visual studio code task file
 /.vscode/*
+
+#ignore the visual studio code processing video output files
+/out/*

@@ -12,3 +12,15 @@ void draw() {
 
 //sdfghjk
 // auhogarpgn
+//alle
+//maal
+
+
+
+
+
+
+//text
+
+
+//toevoeg
