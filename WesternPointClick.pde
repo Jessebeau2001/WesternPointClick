@@ -1,5 +1,5 @@
 void setup() {
-    fullsceen();
+    fullScreen(FX2D);
     background(0);
 }
 
