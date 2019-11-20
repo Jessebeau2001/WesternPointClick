@@ -1,5 +1,5 @@
 class gameObject{
-    int boundX, boundY;
+    public int boundX, boundY;
     int sizeX, sizeY;
     String imageFile;
     boolean clickState = true;
@@ -34,5 +34,11 @@ class gameObject{
             }
         }
     return false;
+    }
+
+    void translate(int x, int y) {
+        pushMatrix();
+        translate(x, y);
+        popMatrix();
     }
 }

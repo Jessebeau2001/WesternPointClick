@@ -1,4 +1,3 @@
-gameObject arrowDown = new gameObject(100, 100, 120, 150, "arrowDown.png");
 gameObject wantedPoster = new gameObject(400, 600, 0, 0, "wantedPoster.png");
 inventory toolbar = new inventory();
 
