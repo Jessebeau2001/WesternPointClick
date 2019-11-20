@@ -1,6 +1,5 @@
-gameObject arrowDown = new gameObject(100, 100, 100, 100, "arrowDown.png");
-SceneSwitch sceneSwitch;
-
+gameObject arrowDown = new gameObject(100, 100, 120, 150, "arrowDown.png");
+SceneSwitch sceneswitch;
 
 void setup() {
     fullScreen(FX2D);
@@ -11,9 +10,9 @@ void setup() {
 }
 
 void draw() {
-    if (arrowDown.pressed()) {} else {
-        arrowDown.draw();
-    }
+    background(255);
+        
+    arrowDown.draw();
 
     sceneSwitch.run();
     
