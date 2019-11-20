@@ -20,14 +20,15 @@ class SceneSwitch {
   void run() {
     if (currentScene == StreetScene) {
       streetScene.run();
-      if(streetScene.arrowGate.pressed()) {
+      if(streetScene.arrowGate.clicked()) {
         currentScene = GateScene;
+      } else if(streetScene.arrowBar.clicked()) {
+        currentScene = BarScene;
       }
     } else if (currentScene == BarScene) {
       barScene.run();
     } else if (currentScene == GateScene) {
       gateScene.run();
     }
-    streetScene.run();
   }
 }

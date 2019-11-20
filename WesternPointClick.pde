@@ -1,5 +1,5 @@
 gameObject arrowDown = new gameObject(100, 100, 120, 150, "arrowDown.png");
-SceneSwitch sceneswitch;
+SceneSwitch sceneSwitch;
 
 void setup() {
     fullScreen(FX2D);

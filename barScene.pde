@@ -5,7 +5,7 @@ class barScene {
   gameObject arrowStreet = new gameObject(500, 500, 100, 100, "arrowDown.png");
   
   barScene() {
-    background = loadImage("FrontGate.png");
+    background = loadImage("BarScene.png");
     arrowStreet.setup();
   }
   
