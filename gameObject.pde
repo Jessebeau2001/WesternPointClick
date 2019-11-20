@@ -19,7 +19,7 @@ class gameObject{
     
     void draw() {
         image(image, boundX, boundY);
-        println("boundX: "+boundX, "boundY: "+boundY, "sizeX: "+sizeX, "sizeY: "+sizeY);
+        //println("boundX: "+boundX, "boundY: "+boundY, "sizeX: "+sizeX, "sizeY: "+sizeY);
     }
 
     boolean pressed() {

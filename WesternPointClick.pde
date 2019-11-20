@@ -1,13 +1,12 @@
 gameObject arrowDown = new gameObject(100, 100, 100, 100, "arrowDown.png");
-SceneSwitch sceneswitch;
+SceneSwitch sceneSwitch;
+
 
 void setup() {
-    //fullScreen(FX2D);
-    size(800, 800, FX2D);
+    fullScreen(FX2D);
+    //size(800, 800, FX2D);
     background(255);
-    
-    sceneswitch = new SceneSwitch();
-
+    sceneSwitch = new SceneSwitch("streetScene");
     arrowDown.setup();
 }
 
@@ -16,5 +15,6 @@ void draw() {
         arrowDown.draw();
     }
 
-    sceneswitch.run();
+    sceneSwitch.run();
+    
 }
