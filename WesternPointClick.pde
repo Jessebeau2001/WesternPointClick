@@ -2,15 +2,13 @@ gameObject arrowDown = new gameObject(100, 100, 120, 150, "arrowDown.png");
 gameObject wantedPoster = new gameObject(400, 600, 0, 0, "wantedPoster.png");
 inventory toolbar = new inventory();
 
-SceneSwitch sceneswitch;
+SceneSwitch sceneSwitch;
 
 void setup() {
     fullScreen(FX2D);
     //size(800, 800, FX2D);
     background(255);
-    
-    sceneswitch = new SceneSwitch();
-
+    sceneSwitch = new SceneSwitch("streetScene");
     arrowDown.setup();
     toolbar.setup();
     wantedPoster.setup();

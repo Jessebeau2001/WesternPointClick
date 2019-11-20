@@ -1,50 +1,34 @@
 
 class SceneSwitch {
 
-  String StreetScene = "StreetScene";
-  String BarScene = "BarScene";
-  String GateScene = "GateScene";
-  
-  PImage Street, Bar, Gate;
+  String StreetScene = "streetScene";
+  String BarScene = "barScene";
+  String GateScene = "gateScene";
 
-  String currentScene = GateScene;
+  String currentScene = "";
   String previousScene = "";
   
-  SceneSwitch() {
-    Street = loadImage("StreetScene.png");
-    Bar = loadImage("BarScene.png");
-    Gate = loadImage("FrontGate.png");
+  streetScene streetScene;
+  barScene barScene = new barScene();
+  gateScene gateScene = new gateScene();
+  
+  SceneSwitch(String startScene) {
+    currentScene = startScene;
+    streetScene = new streetScene();
   }
 
   void run() {
     if (currentScene == StreetScene) {
-      StreetScene();
+      streetScene.run();
+      if(streetScene.arrowGate.clicked()) {
+        currentScene = GateScene;
+      } else if(streetScene.arrowBar.clicked()) {
+        currentScene = BarScene;
+      }
     } else if (currentScene == BarScene) {
-      BarScene();
+      barScene.run();
     } else if (currentScene == GateScene) {
-      GateScene();
+      gateScene.run();
     }
   }
-
-  void StreetScene() {
-    image(Street, 0, 0);
-    fill(200);
-    textSize(128);
-    text("Street Scene", width/2, height/2);
-  }
-  
-  void BarScene() {
-    image(Bar, 0 , 0, width, height);
-    fill(200);
-    textSize(128);
-    text("Bar Scene", width/2, height/2);
-  }
-  
-  void GateScene() {
-    image(Gate, 0, 0, width, height);
-    fill(200);
-    textSize(128);
-    text("Gate Scene", width/2, height/2);
-  }
-
 }
