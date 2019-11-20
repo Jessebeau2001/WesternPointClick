@@ -9,13 +9,15 @@ class gameObject{
     gameObject(int boundX, int boundY,int sizeX, int sizeY, String imageFile) {
         this.boundX = boundX;
         this.boundY = boundY;
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+        //this.sizeX = sizeX;
+        //this.sizeY = sizeY;
         this.imageFile = imageFile;
     }
 
     void setup() {
         image = loadImage(imageFile);
+        sizeX = image.width;
+        sizeY = image.height;
     }
     
     void draw() {
