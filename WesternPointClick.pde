@@ -1,20 +1,20 @@
-Click click1 = new Click(100, 200, 100, 100, "Name");
+gameObject arrowDown = new gameObject(100, 100, 100, 100, "arrowDown.png");
 SceneSwitch sceneswitch;
 
-PImage arrow;
-
 void setup() {
-    fullScreen(FX2D);
+    //fullScreen(FX2D);
+    size(800, 800, FX2D);
     background(255);
     
-    arrow = loadImage("arrowDown.png");
     sceneswitch = new SceneSwitch();
+
+    arrowDown.setup();
 }
 
 void draw() {
-    click1.draw();
-
-    image(arrow, 0, 0);
+    if (arrowDown.pressed()) {} else {
+        arrowDown.draw();
+    }
 
     sceneswitch.run();
 }
