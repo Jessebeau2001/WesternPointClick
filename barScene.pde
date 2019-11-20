@@ -2,7 +2,7 @@
 class barScene {
   PImage background;
   
-  gameObject arrowStreet = new gameObject(500, 500, 100, 100, "arrowDown.png");
+  gameObject arrowStreet = new gameObject(width - 200, 600, 100, 100, "arrowDown.png");
   
   barScene() {
     background = loadImage("BarScene.png");

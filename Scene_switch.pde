@@ -27,8 +27,14 @@ class SceneSwitch {
       }
     } else if (currentScene == BarScene) {
       barScene.run();
+      if(barScene.arrowStreet.clicked()) {
+        currentScene = StreetScene;
+      }
     } else if (currentScene == GateScene) {
       gateScene.run();
+      if(gateScene.arrowStreet.clicked()) {
+        currentScene = StreetScene;
+      }
     }
   }
 }

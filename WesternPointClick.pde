@@ -7,8 +7,7 @@ void setup() {
     fullScreen(FX2D);
     //size(800, 800, FX2D);
     background(255);
-    sceneSwitch = new SceneSwitch("streetScene");
-    arrowDown.setup();
+    sceneSwitch = new SceneSwitch("gateScene");
     toolbar.setup();
     wantedPoster.setup();
 }
@@ -17,9 +16,6 @@ void draw() {
     background(255);
 
     sceneSwitch.run();
-    if (!arrowDown.clicked()) {
-        arrowDown.draw();
-    }
 
     toolbar.draw();
 
