@@ -17,7 +17,7 @@ void setup() {
 void draw() {
     background(255);
 
-    sceneswitch.run();
+    sceneSwitch.run();
     if (!arrowDown.clicked()) {
         arrowDown.draw();
     }
