@@ -1,4 +1,4 @@
-gameObject arrowDown = new gameObject(100, 100, 100, 100, "arrowDown.png");
+gameObject arrowDown = new gameObject(100, 100, 120, 150, "arrowDown.png");
 SceneSwitch sceneswitch;
 
 void setup() {
@@ -12,9 +12,9 @@ void setup() {
 }
 
 void draw() {
-    if (arrowDown.pressed()) {} else {
-        arrowDown.draw();
-    }
+    background(255);
+        
+    arrowDown.draw();
 
     sceneswitch.run();
 }

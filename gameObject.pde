@@ -2,6 +2,7 @@ class gameObject{
     int boundX, boundY;
     int sizeX, sizeY;
     String imageFile;
+    boolean clickState = true;
 
     PImage image;
 
@@ -19,18 +20,17 @@ class gameObject{
     
     void draw() {
         image(image, boundX, boundY);
-        println("boundX: "+boundX, "boundY: "+boundY, "sizeX: "+sizeX, "sizeY: "+sizeY);
+        //println("boundX: "+boundX, "boundY: "+boundY, "sizeX: "+sizeX, "sizeY: "+sizeY);
     }
 
-    boolean pressed() {
-        if(mouseX > boundX && mouseX < boundX + sizeX) {
-            if(mouseY > sizeY && mouseY < boundY + sizeY) {
-                return true;
-            } else {
-                return false;
+    boolean clicked() {
+        if (mousePressed) {
+            if(mouseX > boundX && mouseX < boundX + sizeX) {
+                if(mouseY > boundY && mouseY < boundY + sizeY) {
+                    return true;
+                }
             }
-        } else {
-            return false;
         }
+    return false;
     }
 }
