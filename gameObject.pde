@@ -1,34 +1,38 @@
 class gameObject{
-    public int boundX, boundY;
-    int sizeX, sizeY;
+    public int posX, posY;
+    int boundX, boundY;
+    int size;
     String imageFile;
     boolean clickState = true;
+    boolean isPickup;
 
     PImage image;
 
-    gameObject(int boundX, int boundY,int sizeX, int sizeY, String imageFile) {
-        this.boundX = boundX;
-        this.boundY = boundY;
-        //this.sizeX = sizeX;
-        //this.sizeY = sizeY;
+    gameObject(int posX, int posY, int size, String imageFile, boolean isPickup) {
+        this.posX = posX;
+        this.posY = posY;
+        this.size = size;
         this.imageFile = imageFile;
+        this.isPickup = isPickup;
     }
 
     void setup() {
         image = loadImage(imageFile);
-        sizeX = image.width;
-        sizeY = image.height;
+        boundX = image.width;
+        boundY = image.height;
     }
     
     void draw() {
-        image(image, boundX, boundY);
-        //println("boundX: "+boundX, "boundY: "+boundY, "sizeX: "+sizeX, "sizeY: "+sizeY);
+        image(image, posX, posY);
     }
 
     boolean clicked() {
         if (mousePressed) {
-            if(mouseX > boundX && mouseX < boundX + sizeX) {
-                if(mouseY > boundY && mouseY < boundY + sizeY) {
+            if(mouseX > posX && mouseX < posX + boundX) {
+                if(mouseY > posY && mouseY < posY + boundY) {
+                    if (isPickup) {
+                        pickup();
+                    }
                     return true;
                 }
             }
@@ -36,9 +40,15 @@ class gameObject{
     return false;
     }
 
-    void translate(int x, int y) {
-        pushMatrix();
-        translate(x, y);
-        popMatrix();
+    void pickup() {
+        posX = mouseX;
+        posY = mouseY;
     }
 }
+
+//class gameObjectItem extends gameObject {
+//    
+//    gameObjectItem() {
+//        
+//    }
+//}
