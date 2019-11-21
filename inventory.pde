@@ -2,8 +2,9 @@ class inventory{
     PImage toolbar;
 
     boolean holding; 
-
     int toolbarImageHeight = 282;
+    int slotAmount = 5;
+    int slotSpacing, slotSpacingEdge;
 
     inventory() {
 
@@ -15,5 +16,10 @@ class inventory{
 
     void draw() {
         image(toolbar, 0, height - toolbar.height);
+
+        slotSpacing = Witdh/slotAmount;
+        slotSpacingEdge =  slotSpacing/2;
+
+        ellipse(width/2, height/2, 100, 100);
     }
 }

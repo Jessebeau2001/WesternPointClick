@@ -45,10 +45,3 @@ class gameObject{
         posY = mouseY;
     }
 }
-
-//class gameObjectItem extends gameObject {
-//    
-//    gameObjectItem() {
-//        
-//    }
-//}
