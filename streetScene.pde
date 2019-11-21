@@ -5,6 +5,9 @@ class streetScene {
   String scene = "streetScene";
   String nextScene = null;
   
+  float imageX = -25;
+  float imageY = -25;
+  
   gameObject arrowBar = new gameObject(500, 500, 100, "arrowDown.png", false);
   gameObject arrowGate = new gameObject(800, 900, 100, "arrowDown.png", false);
   
