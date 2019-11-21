@@ -8,8 +8,8 @@ void setup() {
     //size(800, 800, FX2D);
     background(255);
     sceneSwitch = new SceneSwitch("streetScene");
-    //toolbar.setup();
-    //wantedPoster.setup();
+    toolbar.setup();
+    wantedPoster.setup();
 }
 
 void draw() {
@@ -17,7 +17,7 @@ void draw() {
 
     sceneSwitch.run();
 
-    //toolbar.draw();
+    toolbar.draw();
 
     wantedPoster.draw();
     wantedPoster.clicked();

@@ -20,7 +20,7 @@ class streetScene {
   void run() {
     display();
     move();
-    //arrowBar.draw();
+    arrowBar.draw();
     arrowGate.draw();
     
     //imageX = map(mouseX, 0, width, 0, -50);
