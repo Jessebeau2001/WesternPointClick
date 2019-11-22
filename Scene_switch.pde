@@ -43,5 +43,9 @@ class SceneSwitch {
         currentScene = BarScene;
       }
     }
+
+    //switch (currentScene) {
+    //
+    //}
   }
 }

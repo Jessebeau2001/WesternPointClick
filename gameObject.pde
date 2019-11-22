@@ -34,7 +34,7 @@ class gameObject{
             if(mouseX > posX && mouseX < posX + boundX) {
                 if(mouseY > posY && mouseY < posY + boundY) {
                     if (isPickup) {
-                        pickup();
+                        //pickup();
                     }
                     return true;
                 }
@@ -43,9 +43,10 @@ class gameObject{
     return false;
     }
 
-    void pickup() {
-        posX = mouseX;
-        posY = mouseY;
+    public void pickup(int posX) {
+        isPickup = false;
+        this.posX = posX;
+        posY = height-120;
     }
     
     void holding() {
