@@ -36,5 +36,9 @@ class SceneSwitch {
         currentScene = StreetScene;
       }
     }
+
+    //switch (currentScene) {
+    //
+    //}
   }
 }
