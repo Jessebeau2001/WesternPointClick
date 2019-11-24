@@ -36,13 +36,13 @@ class inventory{
     }
 
     int getFreeSlot() {
-        return 80;
-//        for (int i = 0; i < slotFree.length; i++) {
-//            if (slotFree[i] = false) {
-//                slotFree[i] = true;
-//                return slots[i];
-//            }
-//        }
-//        return 0;
+        for (int i = 0; i < slotFree.length; i++) {
+            if (slotFree[i] = true) {
+                slotFree[i] = false;
+                println(slots[i]);
+                return slots[i];
+            }
+        }
+        return 0;
     }
 }
