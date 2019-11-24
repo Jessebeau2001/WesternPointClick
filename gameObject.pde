@@ -1,17 +1,18 @@
 class gameObject{
     public int posX, posY;
     int boundX, boundY;
-    int size;
+    int sizeX, sizeY;
     String imageFile;
     boolean clickState = true;
     boolean isPickup;
 
     PImage image;
 
-    gameObject(int posX, int posY, int size, String imageFile, boolean isPickup) {
+    gameObject(int posX, int posY, int sizeX, int sizeY, String imageFile, boolean isPickup) {
         this.posX = posX;
         this.posY = posY;
-        this.size = size;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         this.imageFile = imageFile;
         this.isPickup = isPickup;
         //this.isPickup = true;
@@ -19,12 +20,14 @@ class gameObject{
 
     void setup() {
         image = loadImage(imageFile);
-        boundX = image.width;
-        boundY = image.height;
+        //boundX = image.width;
+        //boundY = image.height;
+        boundX = sizeX;
+        boundY = sizeY;
     }
     
     void draw() {
-        image(image, posX, posY);
+        image(image, posX, posY, sizeX, sizeY);
     }
 
     boolean clicked() {
@@ -45,5 +48,10 @@ class gameObject{
         isPickup = false;
         this.posX = posX;
         posY = height-120;
+    }
+    
+    void holding() {
+      posX = mouseX - image.width/4;
+      posY = mouseY - image.height/4;
     }
 }

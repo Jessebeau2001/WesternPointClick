@@ -22,7 +22,7 @@ void draw() {
 
     sceneSwitch.run();
 
-    toolbar.draw();
+    //toolbar.draw();
 
     wantedPoster.draw();
     wantedPoster.clicked();

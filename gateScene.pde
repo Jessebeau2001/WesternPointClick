@@ -5,7 +5,7 @@ class gateScene {
   float imageX = -25;
   float imageY = -25;
   
-  gameObject arrowStreet = new gameObject(width/2-100, 600, 100, "arrowDown.png", false);
+  gameObject arrowStreet = new gameObject(width/2-100, 600, 100, 100, "arrowDown.png", false);
   
   gateScene() {
     background = loadImage("FrontGate.png");
