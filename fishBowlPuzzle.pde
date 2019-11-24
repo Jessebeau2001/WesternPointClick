@@ -8,6 +8,8 @@ class fishBowlPuzzle {
   boolean isActive = false;
 
   PuzzlePiece[] Pieces = new PuzzlePiece[4];
+  
+  boolean[] placeEmpty = new boolean[4];
 
   gameObject arrowBack = new gameObject(100, 100, 100, 100, "arrowDown.png", false);
 
@@ -28,6 +30,7 @@ class fishBowlPuzzle {
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].setup();
+      placeEmpty[i] = true;
     }
   }
 

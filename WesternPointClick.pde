@@ -11,8 +11,8 @@ void setup() {
     background(255);
 
     sceneSwitch = new SceneSwitch("streetScene");
-    toolbar.setup();
-    wantedPoster.setup();
+    //toolbar.setup();
+    //wantedPoster.setup();
 }
 
 void draw() {
@@ -22,8 +22,8 @@ void draw() {
 
     //toolbar.draw();
 
-    wantedPoster.draw();
-    wantedPoster.clicked();
+    //wantedPoster.draw();
+    //wantedPoster.clicked();
 }
 
 void mousePressed() {
