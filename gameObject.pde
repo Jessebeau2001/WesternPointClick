@@ -15,6 +15,7 @@ class gameObject{
         this.sizeY = sizeY;
         this.imageFile = imageFile;
         this.isPickup = isPickup;
+        //this.isPickup = true;
     }
 
     void setup() {
@@ -33,9 +34,9 @@ class gameObject{
         if (mousePressed) {
             if(mouseX > posX && mouseX < posX + boundX) {
                 if(mouseY > posY && mouseY < posY + boundY) {
-                    if (isPickup) {
-                        //pickup();
-                    }
+                    //if (isPickup) {
+                    //    return true;
+                    //}
                     return true;
                 }
             }
