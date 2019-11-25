@@ -44,8 +44,8 @@ class fishBowlPuzzle {
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].run();
     }
-    
-    if(solved()) {
+
+    if (solved()) {
       textSize(128);
       text("Solved!!!", width/2, height/2);
     }
@@ -147,16 +147,13 @@ class PuzzlePiece extends gameObject {
     if (clicked() && grabBlock == false) {
       holding();
       pickedUp = true;
+      placed = false;
     } else {
       pickedUp = false;
     }
   }
 
   void snapping() {
-    if (clicked()) {
-      placed = false;
-    }
-
     for (int i = 0; i < P.length; i++) {
       if (clicked() && inRange(P[i]) && PEmpty[i]) {
         posX = (int)P[i].x;
@@ -166,6 +163,7 @@ class PuzzlePiece extends gameObject {
         inRange(P[2]) == false && inRange(P[3]) == false && placed == false) {
         posX = startX;
         posY = startY;
+        currentP = -1;
       }
     }
   }
