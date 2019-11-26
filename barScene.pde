@@ -2,8 +2,8 @@
 class barScene {  
   PImage background;
   
-  gameObject arrowStreet = new gameObject(width - 200, 600, 100, 100, "arrowDown.png", false);
-  gameObject arrowPuzzle = new gameObject(300, 600, 100, 100, "arrowDown.png", false);
+  gameObject arrowStreet = new gameObject(width - 200, height/2-200, 150, 120, "arrowRight.png", false);
+  gameObject arrowPuzzle = new gameObject(300, 650, 80, 100, "arrowDown.png", false);
   fishBowlPuzzle puzzle;
   
   barScene() {

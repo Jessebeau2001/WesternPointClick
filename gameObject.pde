@@ -5,6 +5,7 @@ class gameObject{
     String imageFile;
     boolean clickState = true;
     boolean isPickup;
+    boolean isInToolbar = false;
 
     PImage image;
 
