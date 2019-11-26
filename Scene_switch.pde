@@ -8,20 +8,25 @@ class SceneSwitch {
   String ChurchScene = "churchScene";
   String BankScene = "bankScene";
   String FenceScene = "fenceScene";
+  String ChurchInsideScene = "churchInsideScene";
 
   String currentScene;
+
+  gameObject paper1 = new gameObject(width/2 - 100, 300, 500, 100, "slot.png", false );
 
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
   gateScene gateScene = new gateScene();
   fishBowlPuzzle fishBowlPuzzle = new fishBowlPuzzle();
   churchScene churchScene = new churchScene();
+  churchInsideScene churchInsideScene = new churchInsideScene();
 
   SceneSwitch(String startScene) {
     currentScene = startScene;
+    paper1.setup();
   }
 
-  void run() {
+  void run() {    
     if (currentScene == StreetScene) { //currentScene = StreetScene;
       streetScene.run();
       streetScene();
@@ -29,6 +34,9 @@ class SceneSwitch {
     if (currentScene == BarScene) {
       barScene.run();
       barScene();
+      if (paper1.clicked()) {
+        
+      }
     }
     if (currentScene == GateScene) {
       gateScene.run();
@@ -42,6 +50,10 @@ class SceneSwitch {
       churchScene.run();
       churchScene();
     }
+    if (currentScene == ChurchInsideScene) {
+      churchInsideScene.run();
+      churchInsideScene();
+    }
     
     //switch(currentScene) {
     //  case "StreetScene":
@@ -51,6 +63,8 @@ class SceneSwitch {
     //    println("Buikel");
     //    break;  
     //}
+    paper1.draw();
+    
   }
 
   void streetScene() {
@@ -86,6 +100,15 @@ class SceneSwitch {
   void churchScene() {
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
+    }
+    if (churchScene.arrowInside.clicked()) {
+      currentScene = ChurchInsideScene;
+    }
+  }
+  
+  void churchInsideScene() {
+    if (churchInsideScene.arrowOutside.clicked()) {
+      currentScene = ChurchScene;
     }
   }
 
