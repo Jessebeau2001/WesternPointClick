@@ -6,7 +6,7 @@ class SceneSwitch {
   String GateScene = "gateScene";
   String FishBowlPuzzle = "fishBowlPuzzle";
 
-  String currentScene = "";
+  String currentScene;
   
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
