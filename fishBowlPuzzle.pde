@@ -40,7 +40,6 @@ class fishBowlPuzzle {
   void display() {
     image(background, 0, 0, width, height);
 
-    rect(width/2, height/2, -Pieces[0].sizeX/3*2, -Pieces[0].sizeX/3*2);
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].run();
     }
@@ -169,7 +168,7 @@ class PuzzlePiece extends gameObject {
   }
 
   boolean inRange(PVector pos) {
-    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/4) {
+    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/8) {
       return true;
     }
     return false;
