@@ -2,7 +2,7 @@
 class gateScene {
   PImage background;
   
-  gameObject arrowStreet = new gameObject(width/2-100, 600, 100, 100, "arrowDown.png", false);
+  gameObject arrowStreet = new gameObject(width/2-50, 700, 100, 100, "arrowUp.png", false);
   
   gateScene() {
     background = loadImage("FrontGate.png");
