@@ -4,17 +4,17 @@ class SceneSwitch {
   String StreetScene = "streetScene";
   String BarScene = "barScene";
   String GateScene = "gateScene";
+  String FishBowlPuzzle = "fishBowlPuzzle";
 
   String currentScene = "";
-  String previousScene = "";
   
-  streetScene streetScene;
+  streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
   gateScene gateScene = new gateScene();
+  fishBowlPuzzle fishBowlPuzzle = new fishBowlPuzzle();
   
   SceneSwitch(String startScene) {
     currentScene = startScene;
-    streetScene = new streetScene();
   }
 
   void run() {
@@ -29,12 +29,23 @@ class SceneSwitch {
       barScene.run();
       if(barScene.arrowStreet.clicked()) {
         currentScene = StreetScene;
+      } else if (barScene.arrowPuzzle.clicked()) {
+        currentScene = FishBowlPuzzle;
       }
     } else if (currentScene == GateScene) {
       gateScene.run();
       if(gateScene.arrowStreet.clicked()) {
         currentScene = StreetScene;
       }
+    } else if (currentScene == FishBowlPuzzle) {
+      fishBowlPuzzle.run();
+      if(fishBowlPuzzle.arrowBack.clicked()) {
+        currentScene = BarScene;
+      }
     }
+
+    //switch (currentScene) {
+    //
+    //}
   }
 }

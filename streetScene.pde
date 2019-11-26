@@ -8,8 +8,8 @@ class streetScene {
   float imageX = -25;
   float imageY = -25;
   
-  gameObject arrowBar = new gameObject(500, 500, 100, "arrowDown.png", false);
-  gameObject arrowGate = new gameObject(800, 900, 100, "arrowDown.png", false);
+  gameObject arrowBar = new gameObject(500, 500, 100, 100, "arrowDown.png", false);
+  gameObject arrowGate = new gameObject(800, 900, 100, 100, "arrowDown.png", false);
   
   streetScene() {
     background = loadImage("StreetScene.png");
