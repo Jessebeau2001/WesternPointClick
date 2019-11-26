@@ -30,6 +30,7 @@ class inventory{
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             rectMode(CENTER);
             rect(i, height-120, 150, 150);
+            rectMode(CORNERS);
         }
 
         //for (int i = 0; i < slots.length; i++) {println(slots[i]);}
