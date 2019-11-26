@@ -43,14 +43,14 @@ class SceneSwitch {
       churchScene();
     }
     
-    //switch(currentScene) {
-    //  case "StreetScene":
-    //    println("Dikkel");
-    //    break;
-    //  case "BarScene":
-    //    println("Buikel");
-    //    break;  
-    //}
+    switch(currentScene) {
+      case "StreetScene":
+        println("Dikkel");
+        break;
+      case "BarScene":
+        println("Buikel");
+        break;  
+    }
   }
 
   void streetScene() {
