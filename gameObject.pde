@@ -46,12 +46,12 @@ class gameObject{
 
     public void pickup(int posX) {
         isPickup = false;
-        this.posX = posX;
-        posY = height-120;
+        this.posX = posX - sizeX/2;
+        posY = (height-120 - sizeY/2);
     }
     
     void holding() {
-      posX = mouseX - image.width/4;
-      posY = mouseY - image.height/4;
+      posX = mouseX - sizeX;
+      posY = mouseY - sizeY;
     }
 }

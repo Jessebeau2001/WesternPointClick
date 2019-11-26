@@ -20,7 +20,7 @@ class inventory{
         for (int i = 0; i < slotFree.length; i++) {
             slotFree[i] = true;
         };
-
+        
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             slots[(i-slotSpacingEdge)/slotSpacing] = i;
         }
@@ -31,15 +31,14 @@ class inventory{
             rectMode(CENTER);
             rect(i, height-120, 150, 150);
         }
-
         //for (int i = 0; i < slots.length; i++) {println(slots[i]);}
     }
 
     int getFreeSlot() {
         for (int i = 0; i < slotFree.length; i++) {
-            if (slotFree[i] = true) {
+            if (slotFree[i]) {
                 slotFree[i] = false;
-                println(slots[i]);
+                //println(slots[i]);
                 return slots[i];
             }
         }
