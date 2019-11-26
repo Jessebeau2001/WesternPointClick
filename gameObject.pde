@@ -42,9 +42,12 @@ class gameObject{
     }
 
     public void pickup(int posX) {
-        isPickup = false;
-        this.posX = posX - sizeX/2;
-        posY = (height-120 - sizeY/2);
+        //if (isPickup) {
+            isPickup = false;
+            this.posX = posX - sizeX/2;
+            posY = (height-120 - sizeY/2);
+        //}
+
     }
     
     void holding() {
