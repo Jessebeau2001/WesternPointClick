@@ -1,17 +1,19 @@
 class inventory{
     PImage toolbar;
+    PImage slot;
 
-    boolean holding;
     int slotSpacing, slotSpacingEdge;
 
     boolean[] slotFree = new boolean[8];
     int[] slots = new int[8];
+
     inventory() {
 
     }
 
     void setup() {
         toolbar = loadImage("toolbar.png");
+        slot = loadImage("slot.png");
 
         slotSpacing = width / slotFree.length;
         slotSpacingEdge = slotSpacing / 2;
@@ -26,10 +28,13 @@ class inventory{
     }
 
     void draw() {
-        image(toolbar, 0, height - toolbar.height);
+        image(toolbar, (width - toolbar.width)/2, height - toolbar.height - 45);
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             rectMode(CENTER);
+            imageMode(CENTER);
             rect(i, height-120, 100, 100);
+            image(slot, i, height-120);
+            imageMode(CORNER);
             rectMode(CORNERS);
         }
         //for (int i = 0; i < slots.length; i++) {println(slots[i]);}

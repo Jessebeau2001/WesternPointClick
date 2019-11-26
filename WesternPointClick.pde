@@ -28,16 +28,14 @@ void draw() {
     wantedPoster.clicked();
     wantedPoster2.draw();
     wantedPoster2.clicked();
-
-    //toolbar.getFreeSlot();
 }
 
 void mousePressed() {
-    if (wantedPoster.clicked()) {
+    if (wantedPoster.clicked() && wantedPoster.isPickup) {
         wantedPoster.pickup(toolbar.getFreeSlot());
     };
 
-    if (wantedPoster2.clicked()) {
+    if (wantedPoster2.clicked() && wantedPoster2.isPickup) {
         wantedPoster2.pickup(toolbar.getFreeSlot());
-    }; //not working yet!!!
+    };
 }
