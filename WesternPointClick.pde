@@ -11,7 +11,7 @@ void setup() {
     //size(800, 800, FX2D);
     background(255);
 
-    sceneSwitch = new SceneSwitch("streetScene");
+    sceneSwitch = new SceneSwitch("barScene");
     toolbar.setup();
     wantedPoster.setup();
     wantedPoster2.setup();
