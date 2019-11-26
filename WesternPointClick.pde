@@ -1,5 +1,5 @@
-gameObject wantedPoster = new gameObject(400, 600, 300, 400, "wantedPoster.png", true); //bug might be caused cuz its not in void setup
-gameObject wantedPoster2 = new gameObject(700, 800, 300, 400, "wantedPoster.png", true); //minim library for better sound loading
+gameObject wantedPoster = new gameObject(400, 600, 100, 100, "wantedPoster.png", true); //bug might be caused cuz its not in void setup
+gameObject wantedPoster2 = new gameObject(700, 800, 100, 100, "wantedPoster.png", true); //minim library for better sound loading
 inventory toolbar = new inventory();
 
 int test;
@@ -22,7 +22,7 @@ void draw() {
 
     sceneSwitch.run();
 
-    //toolbar.draw();
+    toolbar.draw();
 
     wantedPoster.draw();
     wantedPoster.clicked();
