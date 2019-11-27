@@ -18,10 +18,11 @@ class bankInsideScene {
     } else {
       image(backGround1, 0, 0);
     }
+    //circle(300, height/2, 400);
 
     arrowOutside.draw();
 
-    if (dist(mouseX, mouseY, height/2, 300) < 200 && mousePressed) {
+    if (dist(mouseX, mouseY, 300, height/2) < 400 && mousePressed) {
       isSafeOpen = true;
     }
   }

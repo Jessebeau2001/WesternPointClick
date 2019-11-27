@@ -51,7 +51,7 @@ class gameObject{
     }
     
     void holding() {
-      posX = mouseX - sizeX/4;
-      posY = mouseY - sizeY/4;
+      posX = mouseX - sizeX/2;
+      posY = mouseY - sizeY/2;
     }
 }
