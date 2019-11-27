@@ -41,7 +41,7 @@ class SceneSwitch {
   }
 
   void run() {    
-    if (currentScene == StreetScene) { //currentScene = StreetScene;
+    if (currentScene == StreetScene) {
       streetScene.run();
       streetScene();
     } 
@@ -85,7 +85,7 @@ class SceneSwitch {
   }
 
   void streetScene() {
-    toolbar.draw();
+    toolbar();
     paper2.draw();
 
     if (streetScene.arrowGate.clicked()) {
@@ -113,8 +113,12 @@ class SceneSwitch {
   }
 
   void gateScene() {
-    if (gateScene.firstTime == false) {
+    if (!gateScene.firstTime) {
       toolbar();
+      if (hammer.clicked() && hammer.isPickup) {
+        hammer.pickup(toolbar.getFreeSlot());
+        toolbar.fillSlot("Hammer");
+      }
     }
 
     if (gateScene.arrowStreet.clicked()) {
@@ -122,14 +126,10 @@ class SceneSwitch {
     }
 
     hammer.draw(); //now its only in your inventory when it is in this scene.
-    if (hammer.clicked() && hammer.isPickup) {
-      hammer.pickup(toolbar.getFreeSlot());
-      toolbar.fillSlot("Hammer");
-    }
   }
 
   void barScene() {
-    toolbar.draw();
+    toolbar();
 
     if (barScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -141,7 +141,6 @@ class SceneSwitch {
     if (paper1.clicked() && paper1.isPickup ) {
       paper1.sizeX = 100;
       paper1.sizeY = 100;
-      paper1.isInToolbar = true;
       paper1.pickup(toolbar.getFreeSlot());
     }
     if (paper1.isInToolbar ) {
@@ -150,7 +149,7 @@ class SceneSwitch {
   }
 
   void churchScene() {
-    toolbar.draw();
+    toolbar();
 
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -161,7 +160,7 @@ class SceneSwitch {
   }
 
   void churchInsideScene() {
-    toolbar.draw();
+    toolbar();
 
     if (churchInsideScene.arrowOutside.clicked()) {
       currentScene = ChurchScene;
@@ -169,7 +168,7 @@ class SceneSwitch {
   }
 
   void fishBowlPuzzle() {
-    toolbar.draw();
+    toolbar();
 
     if (fishBowlPuzzle.arrowBack.clicked()) {
       currentScene = BarScene;
@@ -177,7 +176,7 @@ class SceneSwitch {
   }
 
   void bankScene() {
-    toolbar.draw();
+    toolbar();
 
     if (bankScene.arrowBank.clicked()) {
       currentScene = BankInsideScene;
@@ -188,7 +187,7 @@ class SceneSwitch {
   }
 
   void bankInsideScene() {
-    toolbar.draw();
+    toolbar();
     paper3.draw();
 
     if (bankInsideScene.arrowOutside.clicked()) {
@@ -205,7 +204,9 @@ class SceneSwitch {
 
   void toolbar() {
     toolbar.draw();
-
+    if (hammer.isInToolbar) {
+      hammer.draw();
+    }
     if (paper1.isInToolbar) {
       paper1.draw();
     }

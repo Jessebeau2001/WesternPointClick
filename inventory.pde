@@ -45,7 +45,6 @@ class inventory{
             if (slotFree[i]) {
                 slotFree[i] = false;
                 lastIndex = i;
-                //println(slots[i]+ ": "+ slot[i]);
                 return slots[i];
             }
         }

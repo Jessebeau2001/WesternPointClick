@@ -27,14 +27,10 @@ class streetScene {
       arrowBank.draw();
     }
 
-    
+
   }
   
   void display() {
     image(background, 0, 0, width, height);
   }
 }
-
-
-
-//class 
