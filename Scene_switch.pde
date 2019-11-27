@@ -1,6 +1,4 @@
-
 class SceneSwitch {
-
   String StreetScene = "streetScene";
   String BarScene = "barScene";
   String GateScene = "gateScene";
@@ -13,9 +11,10 @@ class SceneSwitch {
 
   String currentScene;
 
-  gameObject wantedPoster = new gameObject(400, 600, 100, 100, "wantedPoster.png", true); //bug might be caused cuz its not in void setup
-  gameObject wantedPoster2 = new gameObject(100, 100, 100, 100, "wantedPoster.png", true); //minim library for better sound loading
+  gameObject wantedPoster = new gameObject(400, 600, 100, 100, "wantedPoster.png", true); //bug might be caused cuz its not in void setup, minim library for better sound loading
+
   inventory toolbar = new inventory();
+
   gameObject paper1 = new gameObject(width/2 - 100, 300, 500, 100, "slot.png", true );
   gameObject paper2 = new gameObject(800, 720, 50, 60, "slot.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "slot.png", true);
@@ -32,7 +31,6 @@ class SceneSwitch {
   SceneSwitch(String startScene) {
     currentScene = startScene;
     wantedPoster.setup();
-    wantedPoster2.setup();
     toolbar.setup();
     paper1.setup();
     paper2.setup();
@@ -74,15 +72,6 @@ class SceneSwitch {
       bankInsideScene.run();
       bankInsideScene();
     }
-
-    //switch(currentScene) {
-    //  case "StreetScene":
-    //    println("Dikkel");
-    //    break;
-    //  case "BarScene":
-    //    println("Buikel");
-    //    break;  
-    //}
     
     if (paper1.isInToolbar) {
       paper1.draw();
@@ -94,8 +83,7 @@ class SceneSwitch {
       paper3.draw();
     }
     
-    //wantedPoster.draw();
-    //wantedPoster2.draw();
+    wantedPoster.draw();
   }
 
   void streetScene() {
@@ -206,13 +194,9 @@ class SceneSwitch {
     }
   }
 
-  //void mousePressed() {
-  //  if (wantedPoster.clicked() && wantedPoster.isPickup) {
-  //    wantedPoster.pickup(toolbar.getFreeSlot());
-  //  }
-
-  //  if (wantedPoster2.clicked() && wantedPoster2.isPickup) {
-  //    wantedPoster2.pickup(toolbar.getFreeSlot());
-  //  }
-  //}
+  void mousePressed() {
+    if (wantedPoster.clicked() && wantedPoster.isPickup) {
+      wantedPoster.pickup(toolbar.getFreeSlot());
+    }
+  }
 }

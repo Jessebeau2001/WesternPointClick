@@ -16,7 +16,6 @@ class gameObject{
         this.sizeY = sizeY;
         this.imageFile = imageFile;
         this.isPickup = isPickup;
-        //this.isPickup = true;
     }
 
     void setup() {
@@ -52,7 +51,7 @@ class gameObject{
     }
     
     void holding() {
-      posX = mouseX - sizeX;
-      posY = mouseY - sizeY;
+      posX = mouseX - sizeX/4;
+      posY = mouseY - sizeY/4;
     }
 }
