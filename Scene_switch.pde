@@ -74,12 +74,11 @@ class SceneSwitch {
       bankInsideScene();
     }
 
-    wantedPoster.draw();
-
-    if (wantedPoster.clicked() && wantedPoster.isPickup) {
-      wantedPoster.pickup(toolbar.getFreeSlot());
-      toolbar.fillSlot("Poster");
-    }
+    //wantedPoster.draw();
+    //if (wantedPoster.clicked() && wantedPoster.isPickup) {
+    //  wantedPoster.pickup(toolbar.getFreeSlot());
+    //  toolbar.fillSlot("Poster");
+    //} 
   }
 
   void streetScene() {
