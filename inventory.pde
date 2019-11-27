@@ -6,6 +6,7 @@ class inventory{
 
     boolean[] slotFree = new boolean[8];
     int[] slots = new int[8];
+    String[] items = new String[8];
 
     inventory() {
 
@@ -44,6 +45,7 @@ class inventory{
         for (int i = 0; i < slotFree.length; i++) {
             if (slotFree[i]) {
                 slotFree[i] = false;
+                items[i] = "";
                 //println(slots[i]);
                 return slots[i];
             }
