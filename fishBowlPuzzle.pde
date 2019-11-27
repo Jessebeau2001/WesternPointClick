@@ -7,6 +7,7 @@ class fishBowlPuzzle {
 
   boolean isActive = false;
   boolean solved;
+  boolean paperFree = false;
 
   PuzzlePiece[] Pieces = new PuzzlePiece[4];
   int[] Pos = new int[4];
@@ -15,14 +16,14 @@ class fishBowlPuzzle {
 
 
   fishBowlPuzzle() {
-    background = loadImage("woodenFloor.jpg");
+    background = loadImage("fishBowlbackground.png");
     arrowBack.setup();
 
 
-    Pieces[0] = new PuzzlePiece(width/6, height/5, 0, 300, 300, "fishBowlLeftTop.png", false);
-    Pieces[1] = new PuzzlePiece(width/6*4, height/5, 2, 300, 300, "fishBowlLeftBottom.png", false);
-    Pieces[2] = new PuzzlePiece(width/6, height/5*3, 3, 300, 300, "fishBowlRightBottom.png", false);
-    Pieces[3] = new PuzzlePiece(width/6*4, height/5*3, 1, 300, 300, "fishBowlRightTop.png", false);
+    Pieces[0] = new PuzzlePiece(width/10, height/5, 0, 471, 430, "fishBowlLeftTop.png", false);
+    Pieces[1] = new PuzzlePiece(width/7*5, height/5, 2, 424, 522, "fishBowlLeftBottom.png", false);
+    Pieces[2] = new PuzzlePiece(width/10, height/5*3, 3, 477, 564, "fishBowlRightBottom.png", false);
+    Pieces[3] = new PuzzlePiece(width/7*5, height/5*3, 1, 490, 482, "fishBowlRightTop.png", false);
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].setup();
@@ -35,6 +36,15 @@ class fishBowlPuzzle {
     blockOtherPieces();
     blockSnapping();
     arrowBack.draw();
+
+    if (solved()) {
+      paperFree = true;
+    } else {
+      paperFree = false;
+    }
+    if (paperFree) {
+      text("done", 0, 100);
+    }
   }
 
   void display() {
@@ -42,11 +52,6 @@ class fishBowlPuzzle {
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].run();
-    }
-
-    if (solved()) {
-      textSize(128);
-      text("Solved!!!", width/2, height/2);
     }
   }
 
@@ -127,10 +132,10 @@ class PuzzlePiece extends gameObject {
     this.finalP = finalP;
     startX = posX;
     startY = posY;
-    P[0] = new PVector(width/2-sizeX, height/2-sizeY);
-    P[1] = new PVector(width/2, height/2-sizeY);
-    P[2] = new PVector(width/2-sizeX, height/2);
-    P[3] = new PVector(width/2, height/2);
+    P[0] = new PVector(550, 150);
+    P[1] = new PVector(845, 150);
+    P[2] = new PVector(534, 509);
+    P[3] = new PVector(876, 467);
     for (int i = 0; i < PEmpty.length; i++) {
       PEmpty[i] = true;
     }

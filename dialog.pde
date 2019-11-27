@@ -17,8 +17,8 @@ class dialog {
     switch(currentDialog) {
       case 0:
         image(dialogBar, 0, 0);
-        text("After all this time I am finally here. I've been", 150, height/5*4+20);
-        text("waiting to solve the mystery for a month now", 150, height/5*4+75);
+        text("After all this time I am finally here. I've been waiting to", 120, height/5*4+20);
+        text("solve the mystery for a month now. Let's go to the city", 120, height/5*4+75);
         break;
       case 1:
         println("second dialog");

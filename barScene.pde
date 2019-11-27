@@ -17,6 +17,10 @@ class barScene {
     display();
     arrowStreet.draw();
     arrowPuzzle.draw();
+    
+    if(puzzle.solved()) {
+      text("done", 0, 100);
+    }
   }
   
   void display() {
