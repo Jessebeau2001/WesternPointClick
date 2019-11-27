@@ -13,3 +13,7 @@ void draw() {
 
     sceneSwitch.run();
 }
+
+void mousePressed() {
+    println("x: "+mouseX+" y: "+mouseY);
+}

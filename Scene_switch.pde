@@ -104,6 +104,16 @@ class SceneSwitch {
       }
     }
 
+    if (hammer.clicked() && hammer.isInToolbar) {
+      streetScene.signRepaired = true;
+      hammer.isInToolbar = false;
+      for (int i = 0; i < toolbar.slotFree.length; i++) {
+        if (toolbar.items[i] == "Hammer") {
+          toolbar.slotFree[i] = true;
+        }
+      }
+    }
+
     if (paper2.clicked() && paper2.isPickup ) {
       paper2.isInToolbar = true;
       paper2.sizeX = 100;
@@ -124,8 +134,10 @@ class SceneSwitch {
     if (gateScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
-
-    hammer.draw(); //now its only in your inventory when it is in this scene.
+    
+    if (!streetScene.signRepaired) {
+      hammer.draw();
+    }
   }
 
   void barScene() {
