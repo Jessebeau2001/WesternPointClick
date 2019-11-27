@@ -20,8 +20,6 @@ class gameObject{
 
     void setup() {
         image = loadImage(imageFile);
-        //boundX = image.width;
-        //boundY = image.height;
         boundX = sizeX;
         boundY = sizeY;
     }
@@ -42,12 +40,10 @@ class gameObject{
     }
 
     public void pickup(int posX) {
-        //if (isPickup) {
             isPickup = false;
             this.posX = posX - sizeX/2;
             posY = (height-120 - sizeY/2);
-        //}
-
+            isInToolbar = true;
     }
     
     void holding() {

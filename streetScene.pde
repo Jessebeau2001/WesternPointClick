@@ -6,6 +6,8 @@ class streetScene {
   gameObject arrowGate = new gameObject(1100, 800, 120, 150, "arrowDown.png", false);
   gameObject arrowChurch = new gameObject(0, height/2, 150, 120, "arrowLeft.png", false);
   gameObject arrowBank = new gameObject(width-150, height/2, 150, 120, "arrowRight.png", false);
+
+  boolean signRepaired = false;
   
   streetScene() {
     background = loadImage("StreetScene.png");
@@ -19,15 +21,16 @@ class streetScene {
     display();
     arrowBar.draw();
     arrowGate.draw();
-    arrowChurch.draw();
-    arrowBank.draw();
+
+    if (signRepaired) {
+      arrowChurch.draw();
+      arrowBank.draw();
+    }
+
+
   }
   
   void display() {
     image(background, 0, 0, width, height);
   }
 }
-
-
-
-//class 

@@ -2,7 +2,7 @@ class inventory{
     PImage toolbar;
     PImage slot;
 
-    int slotSpacing, slotSpacingEdge;
+    int slotSpacing, slotSpacingEdge, lastIndex;
 
     boolean[] slotFree = new boolean[8];
     int[] slots = new int[8];
@@ -21,7 +21,7 @@ class inventory{
 
         for (int i = 0; i < slotFree.length; i++) {
             slotFree[i] = true;
-        };
+        }
 
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             slots[(i-slotSpacingEdge)/slotSpacing] = i;
@@ -38,18 +38,21 @@ class inventory{
             imageMode(CORNER);
             rectMode(CORNERS);
         }
-        //for (int i = 0; i < slots.length; i++) {println(slots[i]);}
     }
 
     int getFreeSlot() {
         for (int i = 0; i < slotFree.length; i++) {
             if (slotFree[i]) {
                 slotFree[i] = false;
-                items[i] = "";
-                //println(slots[i]);
+                lastIndex = i;
                 return slots[i];
             }
         }
         return 0;
+    }
+    
+    void fillSlot(String item) {
+        items[lastIndex] = item;
+        println(items[lastIndex]);
     }
 }

@@ -19,6 +19,8 @@ class SceneSwitch {
   gameObject paper2 = new gameObject(800, 720, 50, 60, "slot.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "slot.png", true);
 
+  gameObject hammer = new gameObject(200, 200, 100, 100, "hammer.png", true);
+
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
   gateScene gateScene = new gateScene();
@@ -35,10 +37,11 @@ class SceneSwitch {
     paper1.setup();
     paper2.setup();
     paper3.setup();
+    hammer.setup();
   }
 
   void run() {    
-    if (currentScene == StreetScene) { //currentScene = StreetScene;
+    if (currentScene == StreetScene) {
       streetScene.run();
       streetScene();
     } 
@@ -74,10 +77,15 @@ class SceneSwitch {
     }
 
     wantedPoster.draw();
+
+    if (wantedPoster.clicked() && wantedPoster.isPickup) {
+      wantedPoster.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("Poster");
+    } 
   }
 
   void streetScene() {
-    toolbar.draw();
+    toolbar();
     paper2.draw();
 
     if (streetScene.arrowGate.clicked()) {
@@ -86,11 +94,14 @@ class SceneSwitch {
     if (streetScene.arrowBar.clicked()) {
       currentScene = BarScene;
     }
-    if (streetScene.arrowBank.clicked()) {
-      currentScene = BankScene;
-    }
-    if (streetScene.arrowChurch.clicked()) {
-      currentScene = ChurchScene;
+
+    if (streetScene.signRepaired) {
+      if (streetScene.arrowBank.clicked()) {
+        currentScene = BankScene;
+      }
+      if (streetScene.arrowChurch.clicked()) {
+        currentScene = ChurchScene;
+      }
     }
 
     if (paper2.clicked() && paper2.isPickup ) {
@@ -102,17 +113,23 @@ class SceneSwitch {
   }
 
   void gateScene() {
-    if (gateScene.firstTime == false) {
+    if (!gateScene.firstTime) {
       toolbar();
+      if (hammer.clicked() && hammer.isPickup) {
+        hammer.pickup(toolbar.getFreeSlot());
+        toolbar.fillSlot("Hammer");
+      }
     }
 
     if (gateScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
+
+    hammer.draw(); //now its only in your inventory when it is in this scene.
   }
 
   void barScene() {
-    toolbar.draw();
+    toolbar();
 
     if (barScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -124,7 +141,6 @@ class SceneSwitch {
     if (paper1.clicked() && paper1.isPickup ) {
       paper1.sizeX = 100;
       paper1.sizeY = 100;
-      paper1.isInToolbar = true;
       paper1.pickup(toolbar.getFreeSlot());
     }
     if (paper1.isInToolbar ) {
@@ -133,7 +149,7 @@ class SceneSwitch {
   }
 
   void churchScene() {
-    toolbar.draw();
+    toolbar();
 
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -144,7 +160,7 @@ class SceneSwitch {
   }
 
   void churchInsideScene() {
-    toolbar.draw();
+    toolbar();
 
     if (churchInsideScene.arrowOutside.clicked()) {
       currentScene = ChurchScene;
@@ -152,7 +168,7 @@ class SceneSwitch {
   }
 
   void fishBowlPuzzle() {
-    toolbar.draw();
+    toolbar();
 
     if (fishBowlPuzzle.arrowBack.clicked()) {
       currentScene = BarScene;
@@ -160,7 +176,7 @@ class SceneSwitch {
   }
 
   void bankScene() {
-    toolbar.draw();
+    toolbar();
 
     if (bankScene.arrowBank.clicked()) {
       currentScene = BankInsideScene;
@@ -171,7 +187,7 @@ class SceneSwitch {
   }
 
   void bankInsideScene() {
-    toolbar.draw();
+    toolbar();
     paper3.draw();
 
     if (bankInsideScene.arrowOutside.clicked()) {
@@ -188,7 +204,9 @@ class SceneSwitch {
 
   void toolbar() {
     toolbar.draw();
-
+    if (hammer.isInToolbar) {
+      hammer.draw();
+    }
     if (paper1.isInToolbar) {
       paper1.draw();
     }
@@ -201,8 +219,6 @@ class SceneSwitch {
   }
 
   void mousePressed() {
-    if (wantedPoster.clicked() && wantedPoster.isPickup) {
-      wantedPoster.pickup(toolbar.getFreeSlot());
-    }
+
   }
 }
