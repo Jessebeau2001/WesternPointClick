@@ -15,9 +15,10 @@ class streetScene {
   dialog dialog = new dialog();
 
   boolean signRepaired = false;
+  boolean firstAnim = true;
   boolean firstTime = true;
   boolean dialogActive = true;
-  boolean firstAnim = true;
+  boolean doOnce = true;
   
   streetScene() {
     background = loadImage("StreetScene.png");
@@ -49,9 +50,19 @@ class streetScene {
         break;
       case "paper":
         dialog.changeText("Hmmm..., what could this mean?", "");
+        dialog.run();
+        if (doOnce) {
+          timer = 0;
+          doOnce = false;
+        }
         break;
       case "paper2":
         dialog.changeText("Another one...", "Is this some kind of code?");
+        dialog.run();
+        if (doOnce) {
+          timer = 0;
+          doOnce = false;
+        }
       default:
         dialogActive = false;
         break;
@@ -62,6 +73,7 @@ class streetScene {
       if(keyPressed || mousePressed) {
         firstTime = false;
         itemPressed = "";
+        doOnce = true;
       }
     }
   }

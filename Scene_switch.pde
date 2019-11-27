@@ -120,9 +120,14 @@ class SceneSwitch {
       paper2.sizeX = 100;
       paper2.sizeY = 100;
       paper2.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("paper2");
       for (int i = 0; i < toolbar.slotFree.length; i++) {
         if (toolbar.items[i] == "paper") {
+          streetScene.itemPressed = "paper2";
+          streetScene.dialogActive = true;
+        } else {
           streetScene.itemPressed = "paper";
+          streetScene.dialogActive = true;
         }
       }
     }
@@ -163,6 +168,7 @@ class SceneSwitch {
         paper1.sizeX = 100;
         paper1.sizeY = 100;
         paper1.pickup(toolbar.getFreeSlot());
+        toolbar.fillSlot("paper");
         barScene.itemPressed = "paper";
       }
     }
