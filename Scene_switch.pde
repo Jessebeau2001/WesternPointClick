@@ -19,6 +19,8 @@ class SceneSwitch {
   gameObject paper2 = new gameObject(800, 720, 50, 60, "slot.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "slot.png", true);
 
+  gameObject hammer = new gameObject(200, 200, 100, 100, "hammer.png", true);
+
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
   gateScene gateScene = new gateScene();
@@ -35,6 +37,7 @@ class SceneSwitch {
     paper1.setup();
     paper2.setup();
     paper3.setup();
+    hammer.setup();
   }
 
   void run() {    
@@ -84,6 +87,11 @@ class SceneSwitch {
     }
     
     wantedPoster.draw();
+
+    if (wantedPoster.clicked() && wantedPoster.isPickup) {
+      wantedPoster.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("Poster");
+    } 
   }
 
   void streetScene() {
@@ -96,11 +104,14 @@ class SceneSwitch {
     if (streetScene.arrowBar.clicked()) {
       currentScene = BarScene;
     }
-    if (streetScene.arrowBank.clicked()) {
-      currentScene = BankScene;
-    }
-    if (streetScene.arrowChurch.clicked()) {
-      currentScene = ChurchScene;
+
+    if (streetScene.signRepaired) {
+      if (streetScene.arrowBank.clicked()) {
+        currentScene = BankScene;
+      }
+      if (streetScene.arrowChurch.clicked()) {
+        currentScene = ChurchScene;
+      }
     }
     
     if (paper2.clicked() && paper2.isPickup ) {
@@ -116,6 +127,12 @@ class SceneSwitch {
     
     if (gateScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
+    }
+
+    hammer.draw(); //now its only in your inventory when it is in this scene.
+    if (hammer.clicked() && hammer.isPickup) {
+      hammer.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("Hammer");
     }
   }
 
@@ -195,8 +212,6 @@ class SceneSwitch {
   }
 
   void mousePressed() {
-    if (wantedPoster.clicked() && wantedPoster.isPickup) {
-      wantedPoster.pickup(toolbar.getFreeSlot());
-    }
+
   }
 }
