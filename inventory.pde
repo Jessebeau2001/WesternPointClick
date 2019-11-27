@@ -4,9 +4,11 @@ class inventory{
 
     int slotSpacing, slotSpacingEdge, lastIndex;
 
-    boolean[] slotFree = new boolean[8];
-    int[] slots = new int[8];
-    String[] items = new String[8];
+    int varHeight = -40;
+
+    boolean[] slotFree = new boolean[7];
+    int[] slots = new int[7];
+    String[] items = new String[7];
 
     inventory() {
 
@@ -29,12 +31,12 @@ class inventory{
     }
 
     void draw() {
-        image(toolbar, (width - toolbar.width)/2, height - toolbar.height - 45);
+        image(toolbar, (width - toolbar.width)/2, height - toolbar.height - 45 - varHeight);
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             rectMode(CENTER);
             imageMode(CENTER);
-            rect(i, height-120, 100, 100);
-            image(slot, i, height-120);
+            rect(i, height-120 - varHeight, 100, 100);
+            image(slot, i, height-120 - varHeight);
             imageMode(CORNER);
             rectMode(CORNERS);
         }

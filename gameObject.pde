@@ -42,7 +42,7 @@ class gameObject{
     public void pickup(int posX) {
             isPickup = false;
             this.posX = posX - sizeX/2;
-            posY = (height-120 - sizeY/2);
+            posY = (height-120 - sizeY/2 + 40); //DONT FORGET TO ALSO CHANGE THIS VALU WHEN YPU CHANGE THE HEIGHT OF THE TOOLBAR!!!
             isInToolbar = true;
     }
     
