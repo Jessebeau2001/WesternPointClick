@@ -48,8 +48,6 @@ class SceneSwitch {
     if (currentScene == BarScene) {
       barScene.run();
       barScene();
-      if (paper1.clicked()) {
-      }
     }
     if (currentScene == GateScene) {
       gateScene.run();
@@ -81,11 +79,15 @@ class SceneSwitch {
     if (wantedPoster.clicked() && wantedPoster.isPickup) {
       wantedPoster.pickup(toolbar.getFreeSlot());
       toolbar.fillSlot("Poster");
-    } 
+    }
   }
 
   void streetScene() {
-    toolbar();
+    if (!streetScene.
+      dialogActive) {
+      toolbar();
+    }
+
     paper2.draw();
 
     if (streetScene.arrowGate.clicked()) {
@@ -119,11 +121,16 @@ class SceneSwitch {
       paper2.sizeX = 100;
       paper2.sizeY = 100;
       paper2.pickup(toolbar.getFreeSlot());
+      for (int i = 0; i < toolbar.slotFree.length; i++) {
+        if (toolbar.items[i] == "paper") {
+          streetScene.itemPressed = "paper";
+        }
+      }
     }
   }
 
   void gateScene() {
-    if (!gateScene.firstTime) {
+    if (!gateScene.dialogActive) {
       toolbar();
       if (hammer.clicked() && hammer.isPickup) {
         hammer.pickup(toolbar.getFreeSlot());
@@ -134,14 +141,16 @@ class SceneSwitch {
     if (gateScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
-    
+
     if (!streetScene.signRepaired) {
       hammer.draw();
     }
   }
 
   void barScene() {
-    toolbar();
+    if (!barScene.dialogActive) {
+      toolbar();
+    }
 
     if (barScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -150,12 +159,16 @@ class SceneSwitch {
       currentScene = FishBowlPuzzle;
     }
 
-    if (paper1.clicked() && paper1.isPickup ) {
-      paper1.sizeX = 100;
-      paper1.sizeY = 100;
-      paper1.pickup(toolbar.getFreeSlot());
+    if (fishBowlPuzzle.solved()) {
+      if (paper1.clicked() && paper1.isPickup ) {
+        paper1.sizeX = 100;
+        paper1.sizeY = 100;
+        paper1.pickup(toolbar.getFreeSlot());
+        barScene.itemPressed = "paper";
+      }
     }
-    if (paper1.isInToolbar ) {
+
+    if (paper1.isInToolbar && !barScene.dialogActive) {
       paper1.draw();
     }
   }
@@ -180,8 +193,6 @@ class SceneSwitch {
   }
 
   void fishBowlPuzzle() {
-    toolbar();
-
     if (fishBowlPuzzle.arrowBack.clicked()) {
       currentScene = BarScene;
     }
@@ -231,6 +242,5 @@ class SceneSwitch {
   }
 
   void mousePressed() {
-
   }
 }

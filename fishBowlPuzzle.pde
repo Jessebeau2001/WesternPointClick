@@ -1,6 +1,7 @@
 
 class fishBowlPuzzle {
   int pieceHolding;
+  int[] Pos = new int[4];
 
   PImage background;
   PImage leftTop, leftBottom, rightBottom, rightTop;
@@ -10,10 +11,9 @@ class fishBowlPuzzle {
   boolean paperFree = false;
 
   PuzzlePiece[] Pieces = new PuzzlePiece[4];
-  int[] Pos = new int[4];
 
   gameObject arrowBack = new gameObject(100, 100, 100, 100, "arrowDown.png", false);
-
+  dialog dialog = new dialog();
 
   fishBowlPuzzle() {
     background = loadImage("fishBowlbackground.png");
@@ -36,14 +36,10 @@ class fishBowlPuzzle {
     blockOtherPieces();
     blockSnapping();
     arrowBack.draw();
-
-    if (solved()) {
-      paperFree = true;
-    } else {
-      paperFree = false;
-    }
-    if (paperFree) {
-      text("done", 0, 100);
+    
+    if(solved()) {
+      dialog.changeText("Why does it say 'bottles'... ", "maybe there is something behind the bottles on the shelf?");
+      dialog.run();
     }
   }
 
