@@ -29,9 +29,7 @@ class fenceScene {
                 dialog.run();
                 break;
             default:
-
         }
-
         timer();
     }
 

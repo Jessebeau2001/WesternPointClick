@@ -20,10 +20,10 @@ class SceneSwitch {
   gameObject paper1 = new gameObject(width/2 - 100, 300, 500, 100, "Code1.png", true );
   gameObject paper2 = new gameObject(800, 700, 50, 60, "Code3.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "Code2.png", true);
-  gameObject paper4 = new gameObject(-100, -100, 50, 60, "Code4.png", true);
-  gameObject wantedFreddi = new gameObject(600, 500, 100, 100, "WantedFreddi.png", false);
+  gameObject paper4 = new gameObject(1550, 710, 60, 86, "Code4.png", true); //should have the same coords (slightly smaller) than wantedfreddi
+  gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
-  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
+  gameObject map = new gameObject(400, 600, 512, 288, "map.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -68,6 +68,9 @@ class SceneSwitch {
     }
     if (currentScene == FishBowlPuzzle) {
       fishBowlPuzzle.run();
+      if(fishBowlPuzzle.arrowBack.clicked()) {
+        currentScene = BarScene;
+      }
       fishBowlPuzzle();
     }
     if (currentScene == ChurchScene) {
@@ -97,7 +100,6 @@ class SceneSwitch {
       //endScene.run();
       endScene();
     }
-
 
     if (keyPressed) {
       if (key == TAB) {
@@ -196,10 +198,6 @@ class SceneSwitch {
         barScene.itemPressed = "paper";
       }
     }
-
-    if (paper1.isInToolbar && !barScene.dialogActive) {
-      paper1.draw();
-    }
   }
 
   void churchScene() {
@@ -211,10 +209,11 @@ class SceneSwitch {
       currentScene = ChurchInsideScene;
     }
     
-    if(wantedFreddi.clicked()) {
+    if(paper4.clicked() && !paper4.isInToolbar) {
       paper4.isInToolbar = true;
       paper4.pickup(toolbar.getFreeSlot());
       toolbar.fillSlot("paper4");
+      churchScene.itemName = "Paper4";
     }
   }
 
@@ -248,8 +247,8 @@ class SceneSwitch {
   }
 
   void bankInsideScene() {
-    paper3.draw();
-
+    if (!paper3.isInToolbar) {paper3.draw();}
+    //circle(350, 380, 650); //for reference of the hitbox of the giant vault
     if (bankInsideScene.arrowOutside.clicked()) {
       currentScene = BankScene;
     }
