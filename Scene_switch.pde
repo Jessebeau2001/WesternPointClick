@@ -19,7 +19,7 @@ class SceneSwitch {
   gameObject paper2 = new gameObject(800, 720, 50, 60, "slot.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "slot.png", true);
 
-  gameObject hammer = new gameObject(200, 200, 100, 100, "hammer.png", true);
+  gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
