@@ -9,6 +9,7 @@ class SceneSwitch {
   String ChurchInsideScene = "churchInsideScene";
   String BankInsideScene = "bankInsideScene";
   String BankPuzzle = "bankPuzzle";
+  String EndScene = "endScene";
 
   String currentScene;
 
@@ -49,7 +50,7 @@ class SceneSwitch {
     hammer.setup();
     bankPuzzle.setup();
     stool.setup();
-    map.draw();
+    map.setup();
   }
 
   void run() {    
@@ -91,6 +92,10 @@ class SceneSwitch {
     }
     if (currentScene == FenceScene) {
       fenceScene();
+    }
+    if (currentScene == EndScene) {
+      //endScene.run();
+      endScene();
     }
 
 
@@ -301,6 +306,14 @@ class SceneSwitch {
       stool.isInToolbar = false;
     }
     if (fenceScene.stoolPlaced) {stool.draw();}
+
+    if (map.isInToolbar) {
+      fenceScene.canContinue = true;
+
+      if (fenceScene.arrowNext.clicked()) {
+        currentScene = EndScene;
+      }
+    }
   }
 
   void toolbar() {
@@ -321,5 +334,9 @@ class SceneSwitch {
       paper4.draw();
     }
     if (stool.isInToolbar) {stool.draw();}
+  }
+
+  void endScene() {
+
   }
 }

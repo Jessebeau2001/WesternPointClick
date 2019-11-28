@@ -15,10 +15,14 @@ class bankPuzzle {
   bankPuzzle() {
     arrowBack.setup();
     background = loadImage("BankPuzzle.png");
-    Pieces[0] = new PuzzlePiece(100, height/2+200, 1, 275, 410, "Code2.png", false);
-    Pieces[1] = new PuzzlePiece(500, height/2+200, 3, 275, 410, "Code4.png", false);
-    Pieces[2] = new PuzzlePiece(900, height/2+200, 0, 275, 410, "Code1.png", false);
-    Pieces[3] = new PuzzlePiece(1300, height/2+200, 2, 275, 410, "Code3.png", false);
+    Pieces[0] = new PuzzlePiece(100, 600, 2, 275, 405, "Code3.png", false);
+    Pieces[1] = new PuzzlePiece(400, 600, 0, 275, 405, "Code1.png", false);
+    Pieces[2] = new PuzzlePiece(700, 600, 3, 275, 405, "Code4.png", false);
+    Pieces[3] = new PuzzlePiece(1000, 600, 1, 275, 405, "Code2.png", false);
+    Pos[0] = 0;
+    Pos[1] = 1;
+    Pos[2] = 2;
+    Pos[3] = 3;
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].setup();
@@ -42,10 +46,6 @@ class bankPuzzle {
     display();
     blockOtherPieces();
     blockSnapping();
-
-    if (solved()) {
-      text("done", 100, 400);
-    }
   }
 
   void display() {
