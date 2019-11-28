@@ -108,7 +108,7 @@ class SceneSwitch {
       }
     }
 
-    if (hammer.clicked() && hammer.isInToolbar) {
+    if (streetScene.brokenSign.clicked() && hammer.isInToolbar) {
       streetScene.signRepaired = true;
       hammer.isInToolbar = false;
       for (int i = 0; i < toolbar.slotFree.length; i++) {
@@ -116,6 +116,8 @@ class SceneSwitch {
           toolbar.slotFree[i] = true;
         }
       }
+    } else if (streetScene.brokenSign.clicked() && !streetScene.signRepaired) {
+      streetScene.itemPressed = "noHammer";
     }
 
     if (paper2.clicked() && paper2.isPickup ) {
