@@ -15,9 +15,11 @@ class SceneSwitch {
 
   inventory toolbar = new inventory();
 
-  gameObject paper1 = new gameObject(width/2 - 100, 300, 500, 100, "slot.png", true );
-  gameObject paper2 = new gameObject(800, 720, 50, 60, "slot.png", true);
-  gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "slot.png", true);
+  gameObject paper1 = new gameObject(width/2 - 100, 300, 500, 100, "Code1.png", true );
+  gameObject paper2 = new gameObject(800, 700, 50, 60, "Code3.png", true);
+  gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "Code2.png", true);
+  gameObject paper4 = new gameObject(-100, -100, 50, 60, "Code4.png", true);
+  gameObject wantedFreddi = new gameObject(600, 500, 100, 100, "WantedFreddi.png", false);
 
   gameObject hammer = new gameObject(200, 200, 100, 100, "hammer.png", true);
 
@@ -37,6 +39,8 @@ class SceneSwitch {
     paper1.setup();
     paper2.setup();
     paper3.setup();
+    paper4.setup();
+    wantedFreddi.setup();
     hammer.setup();
   }
 
@@ -129,10 +133,8 @@ class SceneSwitch {
       for (int i = 0; i < toolbar.slotFree.length; i++) {
         if (toolbar.items[i] == "paper") {
           streetScene.itemPressed = "paper2";
-          streetScene.dialogActive = true;
         } else {
           streetScene.itemPressed = "paper";
-          streetScene.dialogActive = true;
         }
       }
     }
@@ -180,12 +182,18 @@ class SceneSwitch {
   }
 
   void churchScene() {
-
+    wantedFreddi.draw();
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
     if (churchScene.arrowInside.clicked()) {
       currentScene = ChurchInsideScene;
+    }
+    
+    if(wantedFreddi.clicked()) {
+      paper4.isInToolbar = true;
+      paper4.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("paper4");
     }
   }
 
@@ -216,6 +224,12 @@ class SceneSwitch {
     if (bankInsideScene.arrowOutside.clicked()) {
       currentScene = BankScene;
     }
+    
+    if(paper1.isInToolbar && paper2.isInToolbar && paper3.isInToolbar && paper4.isInToolbar) {
+      bankInsideScene.allPapers = true;
+    } else {
+      
+    }
 
     if (paper3.clicked() && paper3.isPickup) {
       paper3.isInToolbar = true;
@@ -240,6 +254,9 @@ class SceneSwitch {
     }
     if (paper3.isInToolbar) {
       paper3.draw();
+    }
+    if (paper4.isInToolbar) {
+      paper4.draw();
     }
   }
 }

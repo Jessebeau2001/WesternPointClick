@@ -4,6 +4,7 @@ class bankInsideScene {
   PImage backGround2;
   boolean isSafeOpen = false;
   boolean dialogActive = false;
+  boolean allPapers = false;
   String itemPressed = "";
 
   gameObject arrowOutside = new gameObject(width-150, 500, 150, 120, "arrowRight.png", false);
