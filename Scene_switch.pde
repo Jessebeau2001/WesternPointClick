@@ -29,6 +29,7 @@ class SceneSwitch {
   churchInsideScene churchInsideScene = new churchInsideScene();
   bankScene bankScene = new bankScene();
   bankInsideScene bankInsideScene = new bankInsideScene();
+  fenceScene fenceScene = new fenceScene();
 
   SceneSwitch(String startScene) {
     currentScene = startScene;
@@ -73,6 +74,10 @@ class SceneSwitch {
       bankInsideScene.run();
       bankInsideScene();
     }
+    if (currentScene == FenceScene) {
+      fenceScene();
+    }
+
 
     if (keyPressed) {
       if (key == TAB) {
@@ -208,6 +213,9 @@ class SceneSwitch {
     if (bankScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
+    if (bankScene.arrowFenceScene.clicked()) {
+      currentScene = FenceScene;
+    }
   }
 
   void bankInsideScene() {
@@ -225,6 +233,10 @@ class SceneSwitch {
       toolbar.fillSlot("paper3");
       bankInsideScene.itemPressed = "paper";
     }
+  }
+
+  void fenceScene() {
+    fenceScene.draw();
   }
 
   void toolbar() {
