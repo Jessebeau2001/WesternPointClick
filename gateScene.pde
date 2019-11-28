@@ -17,22 +17,19 @@ class gateScene {
   void run() {
     display();
     arrowStreet.draw();
-
     switch(itemPressed) {
     case "firstTime":
       dialog.changeText("After all this time I am finally here. I've been waiting to", 
         "solve the mystery for a month now. Let's go to the city");
       dialog.run();
+      dialogActive = true;
       break;
     case "hammer":
       dialog.changeText("Hmmm... , maybe I can use this to build something", "");
       dialog.run();
+      dialogActive = true;
       break;
     default:
-    }
-
-    if (firstTime) {
-      dialogActive = true;
     }
 
     if (keyPressed || mousePressed) {

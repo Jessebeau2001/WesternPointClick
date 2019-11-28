@@ -20,6 +20,7 @@ class SceneSwitch {
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "Code2.png", true);
   gameObject paper4 = new gameObject(-100, -100, 50, 60, "Code4.png", true);
   gameObject wantedFreddi = new gameObject(600, 500, 100, 100, "WantedFreddi.png", false);
+  gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -43,6 +44,7 @@ class SceneSwitch {
     paper4.setup();
     wantedFreddi.setup();
     hammer.setup();
+    stool.setup();
   }
 
   void run() {    
@@ -203,9 +205,14 @@ class SceneSwitch {
   }
 
   void churchInsideScene() {
-    if (churchInsideScene.arrowOutside.clicked()) {
-      currentScene = ChurchScene;
+    if (churchInsideScene.arrowOutside.clicked()) {currentScene = ChurchScene;}
+    if (stool.clicked() && stool.isPickup) {
+      stool.sizeX = 100;
+      stool.sizeY = 100;
+      stool.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("Stool");
     }
+      if (!stool.isInToolbar) {stool.draw();}
   }
 
   void fishBowlPuzzle() {
@@ -252,6 +259,16 @@ class SceneSwitch {
   void fenceScene() {
     fenceScene.draw();
     if (fenceScene.arrowBank.clicked()) {currentScene = BankScene;}
+
+    if (stool.clicked() && stool.isInToolbar) {
+      stool.posX = 575;
+      stool.posY = 783;
+      stool.sizeX = 200;
+      stool.sizeY = 200;
+      fenceScene.stoolPlaced = true;
+      stool.isInToolbar = false;
+    }
+    if (fenceScene.stoolPlaced) {stool.draw();}
   }
 
   void toolbar() {
@@ -271,5 +288,6 @@ class SceneSwitch {
     if (paper4.isInToolbar) {
       paper4.draw();
     }
+    if (stool.isInToolbar) {stool.draw();}
   }
 }
