@@ -1,10 +1,8 @@
-
-
 class churchInsideScene {
   PImage backGround;
   
   gameObject arrowOutside = new gameObject(width/2-50, 750, 120, 150, "arrowDown.png", false);
-  
+
   churchInsideScene() {
     backGround = loadImage("churchInsideScene.png");
     arrowOutside.setup();
