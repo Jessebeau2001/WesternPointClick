@@ -21,7 +21,7 @@ class SceneSwitch {
   gameObject paper4 = new gameObject(-100, -100, 50, 60, "Code4.png", true);
   gameObject wantedFreddi = new gameObject(600, 500, 100, 100, "WantedFreddi.png", false);
 
-  gameObject hammer = new gameObject(200, 200, 100, 100, "hammer.png", true);
+  gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
@@ -31,6 +31,7 @@ class SceneSwitch {
   churchInsideScene churchInsideScene = new churchInsideScene();
   bankScene bankScene = new bankScene();
   bankInsideScene bankInsideScene = new bankInsideScene();
+  fenceScene fenceScene = new fenceScene();
 
   SceneSwitch(String startScene) {
     currentScene = startScene;
@@ -77,6 +78,10 @@ class SceneSwitch {
       bankInsideScene.run();
       bankInsideScene();
     }
+    if (currentScene == FenceScene) {
+      fenceScene();
+    }
+
 
     if (keyPressed) {
       if (key == TAB) {
@@ -152,7 +157,7 @@ class SceneSwitch {
       currentScene = StreetScene;
     }
 
-    if (!streetScene.signRepaired && !hammer.isInToolbar) {
+    if (!streetScene.signRepaired && !hammer.isInToolbar && !gateScene.dialogActive) {
       hammer.draw();
     }
   }
@@ -216,6 +221,9 @@ class SceneSwitch {
     if (bankScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
+    if (bankScene.arrowFenceScene.clicked()) {
+      currentScene = FenceScene;
+    }
   }
 
   void bankInsideScene() {
@@ -239,6 +247,10 @@ class SceneSwitch {
       toolbar.fillSlot("paper3");
       bankInsideScene.itemPressed = "paper";
     }
+  }
+
+  void fenceScene() {
+    fenceScene.draw();
   }
 
   void toolbar() {
