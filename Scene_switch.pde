@@ -22,7 +22,7 @@ class SceneSwitch {
   gameObject paper4 = new gameObject(1550, 710, 60, 86, "Code4.png", true); //should have the same coords (slightly smaller) than wantedfreddi
   gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
-  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
+  gameObject map = new gameObject(400, 600, 512, 288, "map.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -49,7 +49,7 @@ class SceneSwitch {
     hammer.setup();
     bankPuzzle.setup();
     stool.setup();
-    map.draw();
+    map.setup();
   }
 
   void run() {    
