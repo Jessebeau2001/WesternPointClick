@@ -10,8 +10,10 @@ class SceneSwitch {
   String BankInsideScene = "bankInsideScene";
   String BankPuzzle = "bankPuzzle";
   String EndScene = "endScene";
+  String MainScreen = "mainScreen";
 
   String currentScene;
+  int timer = 0;
 
   gameObject wantedPoster = new gameObject(400, 600, 100, 100, "wantedPoster.png", true); //bug might be caused cuz its not in void setup, minim library for better sound loading
 
@@ -21,9 +23,9 @@ class SceneSwitch {
   gameObject paper2 = new gameObject(800, 700, 50, 60, "Code3.png", true);
   gameObject paper3 = new gameObject(1300, height/2-100, 150, 160, "Code2.png", true);
   gameObject paper4 = new gameObject(1550, 710, 60, 86, "Code4.png", true); //should have the same coords (slightly smaller) than wantedfreddi
-  gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
-  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
+  gameObject map = new gameObject(200, 500, 256, 144, "Map.png", true);
+  gameObject painting = new gameObject(width/2 + 340, height/2-200, 312, 238, "painting.png", false);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -38,20 +40,20 @@ class SceneSwitch {
   bankPuzzle bankPuzzle = new bankPuzzle();
   fenceScene fenceScene = new fenceScene();
   endScene endScene = new endScene();
+  mainScreen mainScreen = new mainScreen();
 
   SceneSwitch(String startScene) {
     currentScene = startScene;
-    wantedPoster.setup();
     toolbar.setup();
     paper1.setup();
     paper2.setup();
     paper3.setup();
     paper4.setup();
-    wantedFreddi.setup();
     hammer.setup();
     bankPuzzle.setup();
     stool.setup();
     map.setup();
+    painting.setup();
   }
 
   void run() {    
@@ -99,6 +101,10 @@ class SceneSwitch {
     }
     if (currentScene == EndScene) {
       endScene.run();
+    }
+    if (currentScene == MainScreen) {
+      mainScreen.run();
+      mainScreen();
     }
 
     if (keyPressed) {
@@ -195,7 +201,6 @@ class SceneSwitch {
   }
 
   void churchScene() {
-    wantedFreddi.draw();
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
     }
@@ -212,7 +217,9 @@ class SceneSwitch {
   }
 
   void churchInsideScene() {
-    if (churchInsideScene.arrowOutside.clicked()) {currentScene = ChurchScene;}
+    if (churchInsideScene.arrowOutside.clicked()) {
+      currentScene = ChurchScene;
+      }
     if (stool.clicked() && stool.isPickup) {
       stool.sizeX = 100;
       stool.sizeY = 100;
@@ -250,13 +257,24 @@ class SceneSwitch {
     if (dist(mouseX, mouseY, 350, 380) < 650 && mousePressed && !bankInsideScene.isSafeOpen && bankInsideScene.allPapers) {
       currentScene = BankPuzzle;
     }
-
+    painting.draw();
     if (bankPuzzle.solved()) {
-      map.draw();
+      if (!map.isInToolbar) {
+        map.draw();
+      }
+
       bankInsideScene.isSafeOpen = true;
-      if (map.clicked() && map.isPickup) {
-        map.pickup(toolbar.getFreeSlot());
-        toolbar.fillSlot("map");
+      if (timer > 30) {
+        if (map.clicked() && map.isPickup) {
+          map.sizeX = 100;
+          map.sizeY = 56;
+          map.isInToolbar = true;
+          map.pickup(toolbar.getFreeSlot());
+          toolbar.fillSlot("map");
+        }
+      }
+      if (timer < 40) {
+        timer++;
       }
     }
     
@@ -309,6 +327,12 @@ class SceneSwitch {
     }
   }
 
+  void mainScreen() {
+    if (mainScreen.arrow.clicked()) {
+      currentScene = GateScene;
+    }
+  }
+
   void toolbar() {
     toolbar.draw();
     if (hammer.isInToolbar) {
@@ -326,6 +350,11 @@ class SceneSwitch {
     if (paper4.isInToolbar) {
       paper4.draw();
     }
-    if (stool.isInToolbar) {stool.draw();}
+    if (stool.isInToolbar) {
+      stool.draw();
+      }
+    if (map.isInToolbar) {
+      map.draw();
+    }
   }
 }

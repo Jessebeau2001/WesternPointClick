@@ -6,6 +6,7 @@ class churchScene {
 
   gameObject arrowStreet = new gameObject(width-150, height/2 + 200, 150, 120, "arrowRight.png", false);
   gameObject arrowInside = new gameObject(width/2-60, 850, 120, 150, "arrowUp.png", false);
+  gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   
   dialog dialog = new dialog();
 
@@ -13,12 +14,14 @@ class churchScene {
     backGround = loadImage("churchScene.png");
     arrowStreet.setup();
     arrowInside.setup();
+    wantedFreddi.setup();
   }
   
   void run() {
     display();
     arrowStreet.draw();
     arrowInside.draw();
+    wantedFreddi.draw();
 
     switch (itemName) {
       case "Paper4":

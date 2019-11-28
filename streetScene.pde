@@ -8,8 +8,8 @@ class streetScene {
   String itemPressed = "firstTime";
   int timer = 0;
   
-  gameObject arrowBar = new gameObject(1400, 750, 80, 120, "arrowUpAlt.png", false);
-  gameObject arrowGate = new gameObject(1100, 800, 120, 150, "arrowDown.png", false);
+  gameObject arrowBar = new gameObject(1410, 750, 120, 150, "arrowUp.png", false);
+  gameObject arrowGate = new gameObject(width/2 - 75, height-170, 120, 150, "arrowDown.png", false);
   gameObject arrowChurch = new gameObject(0, height/2, 150, 120, "arrowLeft.png", false);
   gameObject arrowBank = new gameObject(width-150, height/2, 150, 120, "arrowRight.png", false);
   gameObject brokenSign = new gameObject(10, 888 - 377, 259 , 377, "sign_broken.png", false);

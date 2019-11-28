@@ -5,8 +5,9 @@ class gateScene {
   boolean dialogActive;
   boolean hammerPicked = false;
   String itemPressed = "firstTime";
+  int timer = 0;
 
-  gameObject arrowStreet = new gameObject(width/2-50, 700, 100, 100, "arrowUp.png", false);
+  gameObject arrowStreet = new gameObject(width/2-60, 750, 120, 150, "arrowUp.png", false);
   dialog dialog = new dialog();
 
   gateScene() {
@@ -32,10 +33,16 @@ class gateScene {
     default:
     }
 
-    if (keyPressed || mousePressed) {
-      firstTime = false;
-      itemPressed = "";
-      dialogActive = false;
+    if (timer > 30) {
+     if (keyPressed || mousePressed) {
+       firstTime = false;
+       itemPressed = "";
+       dialogActive = false;
+      }
+    }
+
+    if (timer < 35) {
+      timer++;
     }
   }
 

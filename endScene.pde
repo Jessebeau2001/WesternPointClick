@@ -33,7 +33,7 @@ class endScene {
         }
 
         if (keyPressed || mousePressed) {
-            if (timer > 30) {
+            if (timer > 30 && scene < 3) {
                 scene++;
                 timer = 0;
             }
