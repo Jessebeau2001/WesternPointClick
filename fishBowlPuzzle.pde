@@ -1,28 +1,28 @@
 
 class fishBowlPuzzle {
   int pieceHolding;
+  int[] Pos = new int[4];
 
   PImage background;
-  PImage leftTop, leftBottom, rightBottom, rightTop;
 
   boolean isActive = false;
   boolean solved;
+  boolean paperFree = false;
 
   PuzzlePiece[] Pieces = new PuzzlePiece[4];
-  int[] Pos = new int[4];
 
   gameObject arrowBack = new gameObject(100, 100, 100, 100, "arrowDown.png", false);
-
+  dialog dialog = new dialog();
 
   fishBowlPuzzle() {
-    background = loadImage("woodenFloor.jpg");
+    background = loadImage("fishBowlbackground.png");
     arrowBack.setup();
 
 
-    Pieces[0] = new PuzzlePiece(width/6, height/5, 0, 300, 300, "fishBowlLeftTop.png", false);
-    Pieces[1] = new PuzzlePiece(width/6*4, height/5, 2, 300, 300, "fishBowlLeftBottom.png", false);
-    Pieces[2] = new PuzzlePiece(width/6, height/5*3, 3, 300, 300, "fishBowlRightBottom.png", false);
-    Pieces[3] = new PuzzlePiece(width/6*4, height/5*3, 1, 300, 300, "fishBowlRightTop.png", false);
+    Pieces[0] = new PuzzlePiece(width/10, height/5, 0, 471, 430, "fishBowlLeftTop.png", false);
+    Pieces[1] = new PuzzlePiece(width/7*5, height/5, 2, 424, 522, "fishBowlLeftBottom.png", false);
+    Pieces[2] = new PuzzlePiece(width/10, height/5*3, 3, 477, 564, "fishBowlRightBottom.png", false);
+    Pieces[3] = new PuzzlePiece(width/7*5, height/5*3, 1, 490, 482, "fishBowlRightTop.png", false);
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].setup();
@@ -35,19 +35,18 @@ class fishBowlPuzzle {
     blockOtherPieces();
     blockSnapping();
     arrowBack.draw();
+    
+    if(solved()) {
+      dialog.changeText("Why does it say 'bottles'... ", "maybe there is something behind the bottles on the shelf?");
+      dialog.run();
+    }
   }
 
   void display() {
-    image(background, 0, 0, width, height);
+    image(background, 0, 0);
 
-    rect(width/2, height/2, -Pieces[0].sizeX/3*2, -Pieces[0].sizeX/3*2);
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].run();
-    }
-
-    if (solved()) {
-      textSize(128);
-      text("Solved!!!", width/2, height/2);
     }
   }
 
@@ -128,13 +127,15 @@ class PuzzlePiece extends gameObject {
     this.finalP = finalP;
     startX = posX;
     startY = posY;
-    P[0] = new PVector(width/2-sizeX, height/2-sizeY);
-    P[1] = new PVector(width/2, height/2-sizeY);
-    P[2] = new PVector(width/2-sizeX, height/2);
-    P[3] = new PVector(width/2, height/2);
+    P[0] = new PVector(550, 150);
+    P[1] = new PVector(845, 150);
+    P[2] = new PVector(534, 509);
+    P[3] = new PVector(876, 467);
     for (int i = 0; i < PEmpty.length; i++) {
       PEmpty[i] = true;
     }
+    super.boundX = sizeX/2;
+    super.boundY = sizeY/2;
   }
 
   void run() {
@@ -158,6 +159,7 @@ class PuzzlePiece extends gameObject {
       if (clicked() && inRange(P[i]) && PEmpty[i]) {
         posX = (int)P[i].x;
         posY = (int)P[i].y;
+        currentP = i;
         placed = true;
       } else if (clicked() == false && inRange(P[0]) == false && inRange(P[1]) == false &&
         inRange(P[2]) == false && inRange(P[3]) == false && placed == false) {
@@ -169,7 +171,7 @@ class PuzzlePiece extends gameObject {
   }
 
   boolean inRange(PVector pos) {
-    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/4) {
+    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/14) {
       return true;
     }
     return false;

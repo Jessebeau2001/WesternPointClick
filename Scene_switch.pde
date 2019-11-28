@@ -1,6 +1,4 @@
-
 class SceneSwitch {
-
   String StreetScene = "streetScene";
   String BarScene = "barScene";
   String GateScene = "gateScene";
@@ -24,44 +22,54 @@ class SceneSwitch {
   gameObject paper4 = new gameObject(1550, 710, 60, 86, "Code4.png", true); //should have the same coords (slightly smaller) than wantedfreddi
   gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
+  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
-  String currentScene = "";
-  
   streetScene streetScene = new streetScene();
   barScene barScene = new barScene();
   gateScene gateScene = new gateScene();
   fishBowlPuzzle fishBowlPuzzle = new fishBowlPuzzle();
-  
+  churchScene churchScene = new churchScene();
+  churchInsideScene churchInsideScene = new churchInsideScene();
+  bankScene bankScene = new bankScene();
+  bankInsideScene bankInsideScene = new bankInsideScene();
+  bankPuzzle bankPuzzle = new bankPuzzle();
+  fenceScene fenceScene = new fenceScene();
+
   SceneSwitch(String startScene) {
     currentScene = startScene;
+    wantedPoster.setup();
+    toolbar.setup();
+    paper1.setup();
+    paper2.setup();
+    paper3.setup();
+    paper4.setup();
+    wantedFreddi.setup();
+    hammer.setup();
+    bankPuzzle.setup();
+    stool.setup();
+    map.draw();
   }
 
-  void run() {
+  void run() {    
     if (currentScene == StreetScene) {
       streetScene.run();
-      if(streetScene.arrowGate.clicked()) {
-        currentScene = GateScene;
-      } else if(streetScene.arrowBar.clicked()) {
-        currentScene = BarScene;
-      }
-    } else if (currentScene == BarScene) {
+      streetScene();
+    } 
+    if (currentScene == BarScene) {
       barScene.run();
-      if(barScene.arrowStreet.clicked()) {
-        currentScene = StreetScene;
-      } else if (barScene.arrowPuzzle.clicked()) {
-        currentScene = FishBowlPuzzle;
-      }
-    } else if (currentScene == GateScene) {
+      barScene();
+    }
+    if (currentScene == GateScene) {
       gateScene.run();
-      if(gateScene.arrowStreet.clicked()) {
-        currentScene = StreetScene;
-      }
-    } else if (currentScene == FishBowlPuzzle) {
+      gateScene();
+    }
+    if (currentScene == FishBowlPuzzle) {
       fishBowlPuzzle.run();
       if(fishBowlPuzzle.arrowBack.clicked()) {
         currentScene = BarScene;
+      }
       fishBowlPuzzle();
     }
     if (currentScene == ChurchScene) {
@@ -94,8 +102,10 @@ class SceneSwitch {
       }
     }
 
-    //switch (currentScene) {
-    //
+    //wantedPoster.draw();
+    //if (wantedPoster.clicked() && wantedPoster.isPickup) {
+    //  wantedPoster.pickup(toolbar.getFreeSlot());
+    //  toolbar.fillSlot("Poster");
     //}
   }
 
@@ -243,7 +253,12 @@ class SceneSwitch {
     }
 
     if (bankPuzzle.solved()) {
+      map.draw();
       bankInsideScene.isSafeOpen = true;
+      if (map.clicked() && map.isPickup) {
+        map.pickup(toolbar.getFreeSlot());
+        toolbar.fillSlot("map");
+      }
     }
     
     if(paper1.isInToolbar && paper2.isInToolbar && paper3.isInToolbar && paper4.isInToolbar) {

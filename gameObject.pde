@@ -5,6 +5,7 @@ class gameObject{
     String imageFile;
     boolean clickState = true;
     boolean isPickup;
+    boolean isInToolbar = false;
 
     PImage image;
 
@@ -15,13 +16,10 @@ class gameObject{
         this.sizeY = sizeY;
         this.imageFile = imageFile;
         this.isPickup = isPickup;
-        //this.isPickup = true;
     }
 
     void setup() {
         image = loadImage(imageFile);
-        //boundX = image.width;
-        //boundY = image.height;
         boundX = sizeX;
         boundY = sizeY;
     }
@@ -34,9 +32,6 @@ class gameObject{
         if (mousePressed) {
             if(mouseX > posX && mouseX < posX + boundX) {
                 if(mouseY > posY && mouseY < posY + boundY) {
-                    //if (isPickup) {
-                    //    return true;
-                    //}
                     return true;
                 }
             }
@@ -45,13 +40,14 @@ class gameObject{
     }
 
     public void pickup(int posX) {
-        isPickup = false;
-        this.posX = posX;
-        posY = height-120;
+            isPickup = false;
+            this.posX = posX - sizeX/2;
+            posY = (height-120 - sizeY/2 + 40); //DONT FORGET TO ALSO CHANGE THIS VALU WHEN YPU CHANGE THE HEIGHT OF THE TOOLBAR!!!
+            isInToolbar = true;
     }
     
     void holding() {
-      posX = mouseX - image.width/4;
-      posY = mouseY - image.height/4;
+      posX = mouseX - sizeX/2;
+      posY = mouseY - sizeY/2;
     }
 }

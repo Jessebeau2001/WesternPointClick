@@ -1,53 +1,45 @@
 
 class gateScene {
   PImage background;
-  
-  float imageX = -25;
-  float imageY = -25;
-  
-  gameObject arrowStreet = new gameObject(width/2-100, 600, 100, 100, "arrowDown.png", false);
-  
+  boolean firstTime = true;
+  boolean dialogActive;
+  boolean hammerPicked = false;
+  String itemPressed = "firstTime";
+
+  gameObject arrowStreet = new gameObject(width/2-50, 700, 100, 100, "arrowUp.png", false);
+  dialog dialog = new dialog();
+
   gateScene() {
     background = loadImage("FrontGate.png");
     arrowStreet.setup();
   }
-  
+
   void run() {
     display();
-    move();
     arrowStreet.draw();
+    switch(itemPressed) {
+    case "firstTime":
+      dialog.changeText("After all this time I am finally here. I've been waiting to", 
+        "solve the mystery for a month now. Let's go to the city");
+      dialog.run();
+      dialogActive = true;
+      break;
+    case "hammer":
+      dialog.changeText("Hmmm... , maybe I can use this to build something", "");
+      dialog.run();
+      dialogActive = true;
+      break;
+    default:
+    }
+
+    if (keyPressed || mousePressed) {
+      firstTime = false;
+      itemPressed = "";
+      dialogActive = false;
+    }
   }
-  
+
   void display() {
-    image(background, imageX, imageY, width+50, height+50);
+    image(background, 0, 0, width+50, height+50);
   }
-  
-  void move() {
-    if(mouseX < width/5 && imageX < 0) {
-      imageX += 1;
-    }
-    if(mouseX > width/5*4 && imageX > -50) {
-      imageX -= 1;
-    }
-    if(mouseX > width/5 && mouseX < width/2 && imageX > -25) {
-      imageX -= 0.5;
-    }
-    if(mouseX > width/2 && mouseX < width/5*4 && imageX < -25) {
-      imageX += 0.5;
-    }
-    
-    if(mouseY < height/5 && imageY < 0) {
-      imageY += 1;
-    }
-    if(mouseY > height/5*4 && imageY > -50) {
-      imageY -= 1;
-    }
-    if(mouseY > height/5 && mouseY < height/2 && imageY > -25) {
-      imageY -= 0.5;
-    }
-    if(mouseY > height/2 && mouseY < height/5*4 && imageY < -25) {
-      imageY += 0.5;
-    }
-  }
-  
 }

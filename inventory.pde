@@ -1,11 +1,14 @@
 class inventory{
     PImage toolbar;
+    PImage slot;
 
-    boolean holding;
-    int slotSpacing, slotSpacingEdge;
+    int slotSpacing, slotSpacingEdge, lastIndex;
 
-    boolean[] slotFree = new boolean[5];
-    int[] slots = new int[5];
+    int varHeight = -40;
+
+    boolean[] slotFree = new boolean[7];
+    int[] slots = new int[7];
+    String[] items = new String[7];
 
     inventory() {
 
@@ -13,13 +16,14 @@ class inventory{
 
     void setup() {
         toolbar = loadImage("toolbar.png");
+        slot = loadImage("slot.png");
 
         slotSpacing = width / slotFree.length;
         slotSpacingEdge = slotSpacing / 2;
 
         for (int i = 0; i < slotFree.length; i++) {
             slotFree[i] = true;
-        };
+        }
 
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             slots[(i-slotSpacingEdge)/slotSpacing] = i;
@@ -27,23 +31,30 @@ class inventory{
     }
 
     void draw() {
+        image(toolbar, (width - toolbar.width)/2, height - toolbar.height - 45 - varHeight);
         for (int i = slotSpacingEdge; i < width; i = i + slotSpacing) {
             rectMode(CENTER);
-            rect(i, height-120, 150, 150);
+            imageMode(CENTER);
+            rect(i, height-120 - varHeight, 100, 100);
+            image(slot, i, height-120 - varHeight);
+            imageMode(CORNER);
             rectMode(CORNERS);
         }
-
-        //for (int i = 0; i < slots.length; i++) {println(slots[i]);}
     }
 
     int getFreeSlot() {
         for (int i = 0; i < slotFree.length; i++) {
-            if (slotFree[i] = true) {
+            if (slotFree[i]) {
                 slotFree[i] = false;
-                println(slots[i]);
+                lastIndex = i;
                 return slots[i];
             }
         }
         return 0;
+    }
+    
+    void fillSlot(String item) {
+        items[lastIndex] = item;
+        println(items[lastIndex]);
     }
 }

@@ -1,58 +1,51 @@
 
 class barScene {  
   PImage background;
-  
-  float imageX = -25;
-  float imageY = -25;
-  
-  gameObject arrowStreet = new gameObject(width - 200, 600, 100, 100, "arrowDown.png", false);
-  gameObject arrowPuzzle = new gameObject(300, 600, 100, 100, "arrowDown.png", false);
+  boolean dialogActive, doOnce;
+  String itemPressed = "";
+  int timer;
+
+  gameObject arrowStreet = new gameObject(width - 200, height/2-200, 150, 120, "arrowRight.png", false);
+  gameObject arrowPuzzle = new gameObject(300, 650, 80, 100, "arrowDown.png", false);
   fishBowlPuzzle puzzle;
-  
+  dialog dialog = new dialog();
+
   barScene() {
     background = loadImage("BarScene.png");
     arrowStreet.setup();
     arrowPuzzle.setup();
-    puzzle = new fishBowlPuzzle();
   }
-  
+
   void run() {
     display();
-    move();
     arrowStreet.draw();
     arrowPuzzle.draw();
+
+    switch(itemPressed) {
+    case "paper":
+      dialog.changeText("AH YES! there is something behind the bottles", "what does it mean?");
+      dialog.run();
+      dialogActive = true;
+      if (doOnce) {
+        timer = 0;
+        doOnce = false;
+      }
+      break;
+    default:
+      dialogActive = false;
+      break;
+    }
+
+    timer++;
+    if (timer > 30) {
+      if (keyPressed || mousePressed) {
+        itemPressed = "";
+        doOnce = true;
+      }
+    }
   }
-  
+
   void display() {
-    image(background, imageX, imageY, width+50, height+50);
+    image(background, 0, 0, width, height);
   }
-  
-  void move() {
-    if(mouseX < width/5 && imageX < 0) {
-      imageX += 1;
-    }
-    if(mouseX > width/5*4 && imageX > -50) {
-      imageX -= 1;
-    }
-    if(mouseX > width/5 && mouseX < width/2 && imageX > -25) {
-      imageX -= 0.5;
-    }
-    if(mouseX > width/2 && mouseX < width/5*4 && imageX < -25) {
-      imageX += 0.5;
-    }
-    
-    if(mouseY < height/5 && imageY < 0) {
-      imageY += 1;
-    }
-    if(mouseY > height/5*4 && imageY > -50) {
-      imageY -= 1;
-    }
-    if(mouseY > height/5 && mouseY < height/2 && imageY > -25) {
-      imageY -= 0.5;
-    }
-    if(mouseY > height/2 && mouseY < height/5*4 && imageY < -25) {
-      imageY += 0.5;
-    }
-  }
-  
 }
