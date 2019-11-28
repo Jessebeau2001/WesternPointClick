@@ -12,6 +12,7 @@ class streetScene {
   gameObject arrowGate = new gameObject(1100, 800, 120, 150, "arrowDown.png", false);
   gameObject arrowChurch = new gameObject(0, height/2, 150, 120, "arrowLeft.png", false);
   gameObject arrowBank = new gameObject(width-150, height/2, 150, 120, "arrowRight.png", false);
+  gameObject brokenSign = new gameObject(10, 888 - 377, 259 , 377, "sign_broken.png", false);
   dialog dialog = new dialog();
 
   boolean signRepaired = false;
@@ -29,6 +30,7 @@ class streetScene {
     arrowGate.setup();
     arrowChurch.setup();
     arrowBank.setup();
+    brokenSign.setup();
   }
   
   void run() {
@@ -39,7 +41,8 @@ class streetScene {
     if (signRepaired) {
       repairSign();
     } else {
-      image(sign_broken, 10, 888 - sign_broken.height);
+      brokenSign.draw();
+      //image(sign_broken, 10, 888 - sign_broken.height);
     }
     
     switch(itemPressed) {
@@ -63,6 +66,16 @@ class streetScene {
           timer = 0;
           doOnce = false;
         }
+        break;
+      case "noHammer":
+        dialogActive = true;
+        dialog.changeText("A broken sign, ", "maybe I could repair it if I had the right tools");
+        dialog.run();
+        if (doOnce) {
+          timer = 0;
+          doOnce = false;
+        }
+        break;
       default:
         dialogActive = false;
         break;
@@ -88,8 +101,6 @@ class streetScene {
       firstAnim = false;
       currentFrame = frameCount;
     }
-    println("currentFrame: "+currentFrame);
-    println("frameCount: "+frameCount);
     if (currentFrame + animationWait > frameCount) {
       image(sign_build, 10, 888 - sign_build.height);
     } else {
