@@ -9,6 +9,7 @@ class bankInsideScene {
 
   gameObject arrowOutside = new gameObject(width-150, 500, 150, 120, "arrowRight.png", false);
   dialog dialog = new dialog();
+  bankPuzzle puzzle = new bankPuzzle();
 
   bankInsideScene() {
     backGround1 = loadImage("bankInsideScene.png");
@@ -18,18 +19,14 @@ class bankInsideScene {
 
   void run() {
     dialogue();
+    
     if (isSafeOpen) {
       image(backGround2, 0, 0);
     } else {
       image(backGround1, 0, 0);
     }
-    //circle(300, height/2, 400);
 
     arrowOutside.draw();
-
-    if (dist(mouseX, mouseY, 300, height/2) < 400 && mousePressed) {
-      isSafeOpen = true;
-    }
   }
   
   void dialogue() {

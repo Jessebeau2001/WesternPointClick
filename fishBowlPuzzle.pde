@@ -4,7 +4,6 @@ class fishBowlPuzzle {
   int[] Pos = new int[4];
 
   PImage background;
-  PImage leftTop, leftBottom, rightBottom, rightTop;
 
   boolean isActive = false;
   boolean solved;
@@ -44,7 +43,7 @@ class fishBowlPuzzle {
   }
 
   void display() {
-    image(background, 0, 0, width, height);
+    image(background, 0, 0);
 
     for (int i = 0; i < Pieces.length; i++) {
       Pieces[i].run();
@@ -135,6 +134,8 @@ class PuzzlePiece extends gameObject {
     for (int i = 0; i < PEmpty.length; i++) {
       PEmpty[i] = true;
     }
+    super.boundX = sizeX/2;
+    super.boundY = sizeY/2;
   }
 
   void run() {
@@ -158,6 +159,7 @@ class PuzzlePiece extends gameObject {
       if (clicked() && inRange(P[i]) && PEmpty[i]) {
         posX = (int)P[i].x;
         posY = (int)P[i].y;
+        currentP = i;
         placed = true;
       } else if (clicked() == false && inRange(P[0]) == false && inRange(P[1]) == false &&
         inRange(P[2]) == false && inRange(P[3]) == false && placed == false) {
@@ -169,7 +171,7 @@ class PuzzlePiece extends gameObject {
   }
 
   boolean inRange(PVector pos) {
-    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/8) {
+    if (dist(mouseX, mouseY, pos.x + sizeX/2, pos.y + sizeY/2) < (sizeX + sizeY)/14) {
       return true;
     }
     return false;

@@ -8,6 +8,7 @@ class SceneSwitch {
   String FenceScene = "fenceScene";
   String ChurchInsideScene = "churchInsideScene";
   String BankInsideScene = "bankInsideScene";
+  String BankPuzzle = "bankPuzzle";
 
   String currentScene;
 
@@ -31,6 +32,7 @@ class SceneSwitch {
   churchInsideScene churchInsideScene = new churchInsideScene();
   bankScene bankScene = new bankScene();
   bankInsideScene bankInsideScene = new bankInsideScene();
+  bankPuzzle bankPuzzle = new bankPuzzle();
   fenceScene fenceScene = new fenceScene();
 
   SceneSwitch(String startScene) {
@@ -43,6 +45,7 @@ class SceneSwitch {
     paper4.setup();
     wantedFreddi.setup();
     hammer.setup();
+    bankPuzzle.setup();
   }
 
   void run() {    
@@ -77,6 +80,10 @@ class SceneSwitch {
     if (currentScene == BankInsideScene) {
       bankInsideScene.run();
       bankInsideScene();
+    }
+    if (currentScene == BankPuzzle) {
+      bankPuzzle.run();
+      bankPuzzle();
     }
     if (currentScene == FenceScene) {
       fenceScene();
@@ -228,9 +235,18 @@ class SceneSwitch {
 
   void bankInsideScene() {
     paper3.draw();
+    //circle(350, 380, 650);
 
     if (bankInsideScene.arrowOutside.clicked()) {
       currentScene = BankScene;
+    }
+
+    if (dist(mouseX, mouseY, 350, 380) < 650 && mousePressed && !bankInsideScene.isSafeOpen && bankInsideScene.allPapers) {
+      currentScene = BankPuzzle;
+    }
+
+    if (bankPuzzle.solved()) {
+      bankInsideScene.isSafeOpen = true;
     }
     
     if(paper1.isInToolbar && paper2.isInToolbar && paper3.isInToolbar && paper4.isInToolbar) {
@@ -246,6 +262,16 @@ class SceneSwitch {
       paper3.pickup(toolbar.getFreeSlot());
       toolbar.fillSlot("paper3");
       bankInsideScene.itemPressed = "paper";
+    }
+  }
+
+  void bankPuzzle() {
+    if (bankPuzzle.arrowBack.clicked()) {
+      currentScene = BankInsideScene;
+    }
+
+    if (bankPuzzle.solved()) {
+      currentScene = BankInsideScene;
     }
   }
 
