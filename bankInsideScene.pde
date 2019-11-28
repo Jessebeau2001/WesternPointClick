@@ -22,6 +22,7 @@ class bankInsideScene {
     
     if (isSafeOpen) {
       image(backGround2, 0, 0);
+      itemPressed = "safeOpen";
     } else {
       image(backGround1, 0, 0);
     }
@@ -36,23 +37,27 @@ class bankInsideScene {
         dialog.run();
         dialogActive = true;
         break;
-      case "saveLocked":
+      case "safeLocked":
         dialog.changeText("hmmm...., I need a code to open this.", "Maybe I can find it somewhere in town.");
         dialog.run();
         dialogActive = true;
         break;
-      case "saveOpened":
+      case "safeOpened":
         dialog.changeText("Let's see what is in the safe...", "");
         dialog.run();
         dialogActive = true;
         break;
       case "letter":
-        dialog.changeText("it says: 'we are in gods hands now'", "Maybe there is something in the church.");
+        dialog.changeText("There is a map in here.", "does this lead to the missing people?");
         dialog.run();
         dialogActive = true;
       default:
         dialogActive = false;
         break;
+    }
+
+    if (keyPressed || mousePressed) {
+      itemPressed = "";
     }
   }
 }

@@ -22,6 +22,7 @@ class SceneSwitch {
   gameObject paper4 = new gameObject(-100, -100, 50, 60, "Code4.png", true);
   gameObject wantedFreddi = new gameObject(600, 500, 100, 100, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
+  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -48,6 +49,7 @@ class SceneSwitch {
     hammer.setup();
     bankPuzzle.setup();
     stool.setup();
+    map.draw();
   }
 
   void run() {    
@@ -242,7 +244,6 @@ class SceneSwitch {
 
   void bankInsideScene() {
     paper3.draw();
-    //circle(350, 380, 650);
 
     if (bankInsideScene.arrowOutside.clicked()) {
       currentScene = BankScene;
@@ -253,7 +254,12 @@ class SceneSwitch {
     }
 
     if (bankPuzzle.solved()) {
+      map.draw();
       bankInsideScene.isSafeOpen = true;
+      if (map.clicked() && map.isPickup) {
+        map.pickup(toolbar.getFreeSlot());
+        toolbar.fillSlot("map");
+      }
     }
     
     if(paper1.isInToolbar && paper2.isInToolbar && paper3.isInToolbar && paper4.isInToolbar) {
