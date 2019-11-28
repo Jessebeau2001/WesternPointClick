@@ -237,6 +237,7 @@ class SceneSwitch {
 
   void fenceScene() {
     fenceScene.draw();
+    if (fenceScene.arrowBank.clicked()) {currentScene = BankScene;}
   }
 
   void toolbar() {
