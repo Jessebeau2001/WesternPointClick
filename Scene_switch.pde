@@ -150,7 +150,7 @@ class SceneSwitch {
       currentScene = StreetScene;
     }
 
-    if (!streetScene.signRepaired && !hammer.isInToolbar) {
+    if (!streetScene.signRepaired && !hammer.isInToolbar && !gateScene.dialogActive) {
       hammer.draw();
     }
   }
