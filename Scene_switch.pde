@@ -23,7 +23,7 @@ class SceneSwitch {
   gameObject paper4 = new gameObject(1550, 710, 60, 86, "Code4.png", true); //should have the same coords (slightly smaller) than wantedfreddi
   gameObject wantedFreddi = new gameObject(1550, 710, 60, 86, "WantedFreddi.png", false);
   gameObject stool = new gameObject(670, 760, 140, 140, "StepUp.png", true);
-  gameObject map = new gameObject(400, 600, 512, 288, "map.png", true);
+  gameObject map = new gameObject(400, 600, 512, 288, "Map.png", true);
 
   gameObject hammer = new gameObject(240, 725, 100, 100, "hammer.png", true);
 
@@ -37,6 +37,7 @@ class SceneSwitch {
   bankInsideScene bankInsideScene = new bankInsideScene();
   bankPuzzle bankPuzzle = new bankPuzzle();
   fenceScene fenceScene = new fenceScene();
+  endScene endScene = new endScene();
 
   SceneSwitch(String startScene) {
     currentScene = startScene;
@@ -97,8 +98,7 @@ class SceneSwitch {
       fenceScene();
     }
     if (currentScene == EndScene) {
-      //endScene.run();
-      endScene();
+      endScene.run();
     }
 
     if (keyPressed) {
@@ -106,12 +106,6 @@ class SceneSwitch {
         toolbar();
       }
     }
-
-    //wantedPoster.draw();
-    //if (wantedPoster.clicked() && wantedPoster.isPickup) {
-    //  wantedPoster.pickup(toolbar.getFreeSlot());
-    //  toolbar.fillSlot("Poster");
-    //}
   }
 
   void streetScene() {
@@ -333,9 +327,5 @@ class SceneSwitch {
       paper4.draw();
     }
     if (stool.isInToolbar) {stool.draw();}
-  }
-
-  void endScene() {
-
   }
 }
