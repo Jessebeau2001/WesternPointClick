@@ -74,20 +74,23 @@ class SceneSwitch {
       bankInsideScene();
     }
 
+    if (keyPressed) {
+      if (key == TAB) {
+        toolbar();
+      }
+    }
+
     //wantedPoster.draw();
     //if (wantedPoster.clicked() && wantedPoster.isPickup) {
     //  wantedPoster.pickup(toolbar.getFreeSlot());
     //  toolbar.fillSlot("Poster");
-    //} 
+    //}
   }
 
   void streetScene() {
-    if (!streetScene.
-      dialogActive) {
-      toolbar();
+    if (!paper2.isInToolbar) {
+      paper2.draw();
     }
-
-    paper2.draw();
 
     if (streetScene.arrowGate.clicked()) {
       currentScene = GateScene;
@@ -135,7 +138,6 @@ class SceneSwitch {
 
   void gateScene() {
     if (!gateScene.dialogActive) {
-      toolbar();
       if (hammer.clicked() && hammer.isPickup) {
         hammer.pickup(toolbar.getFreeSlot());
         toolbar.fillSlot("Hammer");
@@ -146,15 +148,12 @@ class SceneSwitch {
       currentScene = StreetScene;
     }
 
-    if (!streetScene.signRepaired) {
+    if (!streetScene.signRepaired && !hammer.isInToolbar) {
       hammer.draw();
     }
   }
 
   void barScene() {
-    if (!barScene.dialogActive) {
-      toolbar();
-    }
 
     if (barScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -179,7 +178,6 @@ class SceneSwitch {
   }
 
   void churchScene() {
-    toolbar();
 
     if (churchScene.arrowStreet.clicked()) {
       currentScene = StreetScene;
@@ -190,8 +188,6 @@ class SceneSwitch {
   }
 
   void churchInsideScene() {
-    toolbar();
-
     if (churchInsideScene.arrowOutside.clicked()) {
       currentScene = ChurchScene;
     }
@@ -204,8 +200,6 @@ class SceneSwitch {
   }
 
   void bankScene() {
-    toolbar();
-
     if (bankScene.arrowBank.clicked()) {
       currentScene = BankInsideScene;
     }
@@ -215,7 +209,6 @@ class SceneSwitch {
   }
 
   void bankInsideScene() {
-    toolbar();
     paper3.draw();
 
     if (bankInsideScene.arrowOutside.clicked()) {
@@ -227,6 +220,8 @@ class SceneSwitch {
       paper3.sizeX = 100;
       paper3.sizeY = 100;
       paper3.pickup(toolbar.getFreeSlot());
+      toolbar.fillSlot("paper3");
+      bankInsideScene.itemPressed = "paper";
     }
   }
 
@@ -244,8 +239,5 @@ class SceneSwitch {
     if (paper3.isInToolbar) {
       paper3.draw();
     }
-  }
-
-  void mousePressed() {
   }
 }
