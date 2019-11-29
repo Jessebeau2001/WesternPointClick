@@ -168,6 +168,8 @@ class SceneSwitch {
       if (hammer.clicked() && hammer.isPickup) {
         hammer.pickup(toolbar.getFreeSlot());
         toolbar.fillSlot("Hammer");
+        gateScene.itemPressed = "hammer";
+        gateScene.timer = 0;
       }
     }
 
@@ -328,7 +330,7 @@ class SceneSwitch {
   }
 
   void mainScreen() {
-    if (mainScreen.arrow.clicked()) {
+    if (mainScreen.arrowGate.clicked()) {
       currentScene = GateScene;
     }
   }

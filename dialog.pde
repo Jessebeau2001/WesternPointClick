@@ -16,7 +16,7 @@ class dialog {
 
   void run() {
     textFont(font);
-    image(mainCharacter, 0, height/2);
+    image(mainCharacter, 20, 400, 500, 633);
     image(dialogBar, 0, 0);
     text(rule1, 120, height/5*4+20);
     text(rule2, 120, height/5*4+75);

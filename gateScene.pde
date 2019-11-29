@@ -21,12 +21,12 @@ class gateScene {
     switch(itemPressed) {
     case "firstTime":
       dialog.changeText("After all this time I am finally here. I've been waiting to", 
-        "solve the mystery for a month now. Let's go to the city");
+        "solve the mystery. Let's head straight to the city");
       dialog.run();
       dialogActive = true;
       break;
     case "hammer":
-      dialog.changeText("Hmmm... , maybe I can use this to build something", "");
+      dialog.changeText("Hey little guy! you could be quit usefull!", "");
       dialog.run();
       dialogActive = true;
       break;

@@ -11,7 +11,7 @@ class fishBowlPuzzle {
 
   PuzzlePiece[] Pieces = new PuzzlePiece[4];
 
-  gameObject arrowBack = new gameObject(100, 100, 100, 100, "arrowDown.png", false);
+  gameObject arrowBack = new gameObject(100, 100, 100, 100, "arrowLeft.png", false);
   dialog dialog = new dialog();
 
   fishBowlPuzzle() {

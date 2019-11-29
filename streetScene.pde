@@ -13,6 +13,7 @@ class streetScene {
   gameObject arrowChurch = new gameObject(0, height/2, 150, 120, "arrowLeft.png", false);
   gameObject arrowBank = new gameObject(width-150, height/2, 150, 120, "arrowRight.png", false);
   gameObject brokenSign = new gameObject(10, 888 - 377, 259 , 377, "sign_broken.png", false);
+  gameObject boots = new gameObject(556, 884, 110, 150, "slot.png", false);
   dialog dialog = new dialog();
 
   boolean signRepaired = false;
@@ -31,6 +32,7 @@ class streetScene {
     arrowChurch.setup();
     arrowBank.setup();
     brokenSign.setup();
+    boots.setup();
   }
   
   void run() {
@@ -47,20 +49,12 @@ class streetScene {
     
     switch(itemPressed) {
       case "firstTime":
-        dialog.changeText("I should start in the bar.", "");
+        dialog.changeText("the rumors where true, there is nobody...", "maybe I can find something in the saloon.");
         dialog.run();
         dialogActive =true;
         break;
       case "paper":
-        dialog.changeText("Hmmm..., what could this mean?", "");
-        dialog.run();
-        if (doOnce) {
-          timer = 0;
-          doOnce = false;
-        }
-        break;
-      case "paper2":
-        dialog.changeText("Another one...", "Is this some kind of code?");
+        dialog.changeText("Hmmm..., what could this number mean?", "");
         dialog.run();
         if (doOnce) {
           timer = 0;
@@ -75,6 +69,8 @@ class streetScene {
           timer = 0;
           doOnce = false;
         }
+        break;
+      case "boots":
         break;
       default:
         dialogActive = false;
