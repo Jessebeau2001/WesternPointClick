@@ -227,6 +227,7 @@ class SceneSwitch {
       stool.sizeY = 100;
       stool.pickup(toolbar.getFreeSlot());
       toolbar.fillSlot("Stool");
+      churchInsideScene.itemPressed = "stool";
     }
       if (!stool.isInToolbar) {stool.draw();}
   }
@@ -256,8 +257,11 @@ class SceneSwitch {
       currentScene = BankScene;
     }
 
-    if (dist(mouseX, mouseY, 350, 380) < 650 && mousePressed && !bankInsideScene.isSafeOpen && bankInsideScene.allPapers) {
+    if (dist(mouseX, mouseY, 350, 380) < 325 && mousePressed && !bankInsideScene.isSafeOpen && bankInsideScene.allPapers) {
       currentScene = BankPuzzle;
+    }
+    if (dist(mouseX, mouseY, 350, 380) < 325 && mousePressed && !bankInsideScene.isSafeOpen) {
+      bankInsideScene.itemPressed = "safeLocked";
     }
     painting.draw();
     if (bankPuzzle.solved()) {
@@ -293,6 +297,7 @@ class SceneSwitch {
       paper3.pickup(toolbar.getFreeSlot());
       toolbar.fillSlot("paper3");
       bankInsideScene.itemPressed = "paper";
+      bankInsideScene.timer = 0;
     }
   }
 

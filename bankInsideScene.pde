@@ -2,8 +2,8 @@
 class bankInsideScene {
   PImage backGround1;
   PImage backGround2;
+  int timer = 0;
   boolean isSafeOpen = false;
-  boolean dialogActive = false;
   boolean allPapers = false;
   String itemPressed = "";
 
@@ -17,9 +17,7 @@ class bankInsideScene {
     arrowOutside.setup();
   }
 
-  void run() {
-    dialogue();
-    
+  void run() {    
     if (isSafeOpen) {
       image(backGround2, 0, 0);
       itemPressed = "safeOpen";
@@ -27,7 +25,12 @@ class bankInsideScene {
       image(backGround1, 0, 0);
     }
 
+    if (timer < 35) {
+      timer++;
+    }
+
     arrowOutside.draw();
+    dialogue();
   }
   
   void dialogue() {
@@ -35,29 +38,24 @@ class bankInsideScene {
       case "paper":
         dialog.changeText("Another piece of paper...", "are these maybe for the safe?");
         dialog.run();
-        dialogActive = true;
         break;
       case "safeLocked":
         dialog.changeText("hmmm...., I need a code to open this.", "Maybe I can find it somewhere in town.");
         dialog.run();
-        dialogActive = true;
         break;
       case "safeOpened":
         dialog.changeText("Let's see what is in the safe...", "");
         dialog.run();
-        dialogActive = true;
         break;
       case "letter":
-        dialog.changeText("There is a map in here.", "does this lead to the missing people?");
+        dialog.changeText("a map with a big X", "this must lead to the missing people?");
         dialog.run();
-        dialogActive = true;
-      default:
-        dialogActive = false;
-        break;
     }
 
-    if (keyPressed || mousePressed) {
-      itemPressed = "";
+    if (timer > 30) {
+      if (keyPressed || mousePressed) {
+        itemPressed = "";
+      }
     }
   }
 }

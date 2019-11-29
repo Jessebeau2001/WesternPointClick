@@ -7,6 +7,7 @@ class barScene {
 
   gameObject arrowStreet = new gameObject(width - 200, height/2-200, 150, 120, "arrowRight.png", false);
   gameObject arrowPuzzle = new gameObject(300, 650, 80, 100, "arrowDown.png", false);
+  gameObject pipe = new gameObject(1138, 446, 100, 40, "slot.png", false);
   fishBowlPuzzle puzzle;
   dialog dialog = new dialog();
 
@@ -14,6 +15,7 @@ class barScene {
     background = loadImage("BarScene.png");
     arrowStreet.setup();
     arrowPuzzle.setup();
+    pipe.setup();
   }
 
   void run() {
@@ -21,9 +23,13 @@ class barScene {
     arrowStreet.draw();
     arrowPuzzle.draw();
 
+    if(pipe.clicked()) {
+      itemPressed = "pipe";
+    }
+
     switch(itemPressed) {
     case "paper":
-      dialog.changeText("AH YES! there is something behind the bottles", "what does it mean?");
+      dialog.changeText("there is something behind the bottles", "a paper with a number on it!?");
       dialog.run();
       dialogActive = true;
       if (doOnce) {
@@ -31,6 +37,9 @@ class barScene {
         doOnce = false;
       }
       break;
+    case "pipe":
+      dialog.changeText("People leave behind the most essential things, huh?", "");
+      dialog.run();
     default:
       dialogActive = false;
       break;

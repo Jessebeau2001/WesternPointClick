@@ -37,7 +37,7 @@ class fishBowlPuzzle {
     arrowBack.draw();
     
     if(solved()) {
-      dialog.changeText("Why does it say 'bottles'... ", "maybe there is something behind the bottles on the shelf?");
+      dialog.changeText("A fishbowl eh, and it has something written on it 'bottles'.", "maybe there is something with the bottles on the shelf?");
       dialog.run();
     }
   }

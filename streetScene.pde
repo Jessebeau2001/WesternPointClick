@@ -14,6 +14,7 @@ class streetScene {
   gameObject arrowBank = new gameObject(width-150, height/2, 150, 120, "arrowRight.png", false);
   gameObject brokenSign = new gameObject(10, 888 - 377, 259 , 377, "sign_broken.png", false);
   gameObject boots = new gameObject(556, 884, 110, 150, "slot.png", false);
+  gameObject gun = new gameObject(1658, 872, 150, 75, "slot.png", false);
   dialog dialog = new dialog();
 
   boolean signRepaired = false;
@@ -33,6 +34,7 @@ class streetScene {
     arrowBank.setup();
     brokenSign.setup();
     boots.setup();
+    gun.setup();
   }
   
   void run() {
@@ -45,6 +47,15 @@ class streetScene {
     } else {
       brokenSign.draw();
       //image(sign_broken, 10, 888 - sign_broken.height);
+    }
+
+    if(boots.clicked()) {
+      itemPressed = "boots";
+      timer = 0;
+    }
+    if(gun.clicked()) {
+      itemPressed = "gun";
+      timer = 0;
     }
     
     switch(itemPressed) {
@@ -71,7 +82,12 @@ class streetScene {
         }
         break;
       case "boots":
+        dialog.changeText("Not a bad pair if I do say so myself. ", "Not that anyone wore them recently.");
+        dialog.run();
         break;
+      case "gun":
+        dialog.changeText("It still has some bullets in it. Guess someone dropped it", "in a rush.");
+        dialog.run();
       default:
         dialogActive = false;
         break;
