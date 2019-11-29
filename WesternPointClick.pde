@@ -5,7 +5,7 @@ void setup() {
     //size(1920, 1080, FX2D);
     background(255);
 
-    sceneSwitch = new SceneSwitch("endScene");
+    sceneSwitch = new SceneSwitch("mainScreen");
 }
 
 void draw() {
