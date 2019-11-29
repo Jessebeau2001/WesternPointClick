@@ -3,7 +3,7 @@ class barScene {
   PImage background;
   boolean dialogActive, doOnce;
   String itemPressed = "";
-  int timer;
+  int timer = 0;
 
   gameObject arrowStreet = new gameObject(width - 200, height/2-200, 150, 120, "arrowRight.png", false);
   gameObject arrowPuzzle = new gameObject(300, 650, 80, 100, "arrowDown.png", false);
@@ -25,6 +25,7 @@ class barScene {
 
     if(pipe.clicked()) {
       itemPressed = "pipe";
+      timer = 0;
     }
 
     switch(itemPressed) {

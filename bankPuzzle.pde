@@ -15,10 +15,10 @@ class bankPuzzle {
   bankPuzzle() {
     arrowBack.setup();
     background = loadImage("BankPuzzle.png");
-    Pieces[0] = new PuzzlePiece(100, 600, 2, 275, 405, "Code3.png", false);
-    Pieces[1] = new PuzzlePiece(400, 600, 0, 275, 405, "Code1.png", false);
-    Pieces[2] = new PuzzlePiece(700, 600, 3, 275, 405, "Code4.png", false);
-    Pieces[3] = new PuzzlePiece(1000, 600, 1, 275, 405, "Code2.png", false);
+    Pieces[0] = new PuzzlePiece(400, 600, 2, 275, 405, "Code3.png", false);
+    Pieces[1] = new PuzzlePiece(700, 600, 0, 275, 405, "Code1.png", false);
+    Pieces[2] = new PuzzlePiece(1000, 600, 3, 275, 405, "Code4.png", false);
+    Pieces[3] = new PuzzlePiece(1300, 600, 1, 275, 405, "Code2.png", false);
     Pos[0] = 0;
     Pos[1] = 1;
     Pos[2] = 2;
@@ -31,13 +31,13 @@ class bankPuzzle {
 
   void setup() {
     for (int i = 0; i < Pieces.length; i++){
-      Pieces[i].P[0].x = 300;
+      Pieces[i].P[0].x = 500;
       Pieces[i].P[0].y = 200;
-      Pieces[i].P[1].x = 498;
+      Pieces[i].P[1].x = 698;
       Pieces[i].P[1].y = 198;
-      Pieces[i].P[2].x = 692;
+      Pieces[i].P[2].x = 892;
       Pieces[i].P[2].y = 201;
-      Pieces[i].P[3].x = 886;
+      Pieces[i].P[3].x = 1086;
       Pieces[i].P[3].y = 195;
     }
   }
