@@ -101,6 +101,9 @@ class SceneSwitch {
     }
     if (currentScene == EndScene) {
       endScene.run();
+      if(endScene.homeScreen) {
+        currentScene = MainScreen;
+      }
     }
     if (currentScene == MainScreen) {
       mainScreen.run();
@@ -277,6 +280,7 @@ class SceneSwitch {
           map.isInToolbar = true;
           map.pickup(toolbar.getFreeSlot());
           toolbar.fillSlot("map");
+          bankInsideScene.itemPressed = "letter";
         }
       }
       if (timer < 40) {
@@ -308,6 +312,7 @@ class SceneSwitch {
 
     if (bankPuzzle.solved()) {
       currentScene = BankInsideScene;
+      bankInsideScene.itemPressed = "safeOpened";
     }
   }
 
