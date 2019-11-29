@@ -4,6 +4,7 @@ class fenceScene {
     int timer = 0;
     boolean stoolPlaced = false;
     boolean canContinue = false;
+    boolean dialogActive = false;
 
     gameObject arrowBank = new gameObject(70, 440, 150, 120, "arrowLeft.png", false);
     gameObject arrowNext = new gameObject(width-150, 500, 150, 120, "arrowRight.png", false);
@@ -28,6 +29,9 @@ class fenceScene {
                 dialog.changeText("Looks like this is the end of the road,", "maybe I could use something to get over the fence.");
                 dialog.run();
                 break;
+            case "noMap":
+                dialog.changeText("It wouldn't make much sense to leave into the wild, ", " I must keep looking for a clue that'll help me solve this case.");
+                dialog.run();
             default:
         }
         timer();

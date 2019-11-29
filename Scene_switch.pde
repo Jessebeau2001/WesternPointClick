@@ -328,13 +328,15 @@ class SceneSwitch {
       fenceScene.stoolPlaced = true;
       stool.isInToolbar = false;
     }
-    if (fenceScene.stoolPlaced) {stool.draw();}
 
-    if (map.isInToolbar) {
-      fenceScene.canContinue = true;
-
-      if (fenceScene.arrowNext.clicked()) {
+    if (fenceScene.stoolPlaced) {
+      if (fenceScene.itemPressed == "") {stool.draw();}
+      fenceScene.arrowNext.draw();
+      if (fenceScene.arrowNext.clicked() && map.isInToolbar) {
+        fenceScene.canContinue = true;
         currentScene = EndScene;
+      } else if (fenceScene.arrowNext.clicked()) {
+        fenceScene.itemPressed = "noMap";
       }
     }
   }
