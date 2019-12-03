@@ -3,7 +3,7 @@ class churchInsideScene {
   int timer= 0;
   String itemPressed = "";
   
-  gameObject arrowOutside = new gameObject(width/2-50, 750, 120, 150, "arrowDown.png", false);
+  gameObject arrowOutside = new gameObject(width/2-50, height-150, 120, 150, "arrowDown.png", false);
   gameObject bible = new gameObject(width/2, 600, 300 , 170, "bible.png", false);
   dialog dialog = new dialog();
 
